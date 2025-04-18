@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const shinyCharmCheckbox = document.getElementById('shiny-charm');
     const finishHuntButton = document.getElementById('finish-hunt-button');
     const huntNotesInput = document.getElementById('huntNotes');
+    const tyrantrumLeftImage = document.querySelector('.tyrantrum-left-image');
+    const tyrantrumRightImage = document.querySelector('.tyrantrum-right-image');
+    const tyrantrumId = 697; // Tyrantrum's PokeAPI ID
+    const tyrantrumImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${tyrantrumId}.png`;
 
     let encounterCount = 0;
     let currentPokemon = '';
@@ -18,6 +22,18 @@ document.addEventListener('DOMContentLoaded', function() {
     let hasShinyCharm = false;
     let startTime = null;
     let encounteredPokemonCounts = {};
+
+    if (tyrantrumLeftImage) {
+        tyrantrumLeftImage.src = tyrantrumImageUrl;
+    } else {
+        console.error("Left Tyrantrum image element not found.");
+    }
+    
+    if (tyrantrumRightImage) {
+        tyrantrumRightImage.src = tyrantrumImageUrl;
+    } else {
+        console.error("Right Tyrantrum image element not found.");
+    }
 
     function updateShinyOddsDisplay() {
         const odds = getShinyOdds(huntingMethod, hasShinyCharm);

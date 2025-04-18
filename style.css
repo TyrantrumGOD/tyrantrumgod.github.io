@@ -199,3 +199,33 @@ body {
 #finish-hunt-button:hover {
     opacity: 0.9;
 }
+.tyrantrum-left-image {
+    max-width: 100px; /* Or your desired size */
+    height: auto;
+}
+
+.tyrantrum-right-image {
+    max-width: 100px; /* Or your desired size */
+    height: auto;
+}
+
+.tyrantrum-left {
+    position: fixed; /* Or absolute */
+    left: 500px; /* Adjust as needed */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0;
+    opacity: 0.7;
+    max-height: 500px; /* Adjust if needed */
+}
+
+.tyrantrum-right {
+    position: fixed; /* Or absolute */
+    right: 500px; /* Adjust as needed */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0;
+    opacity: 0.7;
+    max-height: 500px; /* Adjust if needed */
+    transform: translateY(-50%) scaleX(-1);
+}
