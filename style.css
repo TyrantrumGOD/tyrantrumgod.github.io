@@ -91,6 +91,16 @@ body {
     text-align: center;
 }
 
+#shiny-odds a {
+    color: yellow; /* Set the default color of the link */
+    text-decoration: none; /* Optional: remove the underline */
+}
+
+#shiny-odds a:hover {
+    color: orange; /* Change the color on hover */
+    text-decoration: underline; /* Optional: add underline on hover */
+}
+
 #pokemon-image-container {
     order: 6; /* Below the select */
     margin-bottom: 15px;
