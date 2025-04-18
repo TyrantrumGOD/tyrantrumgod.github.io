@@ -1,116 +1,109 @@
-const encounterCountDisplay = document.getElementById('encounter-count');
-const incrementButton = document.getElementById('increment-button');
-const decrementButton = document.getElementById('decrement-button'); // Added decrement button
-const resetButton = document.getElementById('reset-button');
-const pokemonSelect = document.getElementById('pokemon-select');
-const titleElement = document.querySelector('h1');
-const pokemonImage = document.getElementById('pokemon-image');
-const methodSelect = document.getElementById('method-select');
-const shinyOddsDisplay = document.getElementById('shiny-odds'); // Get the shiny odds display
-const shinyCharmCheckbox = document.getElementById('shiny-charm');
-const finishHuntButton = document.getElementById('finish-hunt-button');
-const huntNotesInput = document.getElementById('huntNotes');
+document.addEventListener('DOMContentLoaded', function() {
+    const encounterCountDisplay = document.getElementById('encounter-count-value');
+    const incrementButton = document.getElementById('increment-button');
+    const decrementButton = document.getElementById('decrement-button');
+    const resetButton = document.getElementById('reset-button');
+    const pokemonSelect = document.getElementById('pokemon-select');
+    const titleElement = document.querySelector('h1');
+    const pokemonImage = document.getElementById('pokemon-image');
+    const methodSelect = document.getElementById('method-select');
+    const shinyOddsDisplay = document.getElementById('shiny-odds');
+    const shinyCharmCheckbox = document.getElementById('shiny-charm');
+    const finishHuntButton = document.getElementById('finish-hunt-button');
+    const huntNotesInput = document.getElementById('huntNotes');
 
-let encounterCount = 0;
-let currentPokemon = '';
-let huntingMethod = 'Encounters'; // Default hunting method
-let hasShinyCharm = false; // Track if the user has the Shiny Charm
+    let encounterCount = 0;
+    let currentPokemon = '';
+    let huntingMethod = 'Encounters';
+    let hasShinyCharm = false;
+    let startTime = null;
+    let encounteredPokemonCounts = {};
 
-function updateShinyOddsDisplay() {
-    const odds = getShinyOdds(huntingMethod, hasShinyCharm);
-    if (hasShinyCharm) {
-        shinyOddsDisplay.innerHTML = `Shiny Odds: ${odds.withCharm} (With Shiny Charm)`;
-    } else {
-        shinyOddsDisplay.innerHTML = `Shiny Odds: ${odds.withoutCharm} (Without Shiny Charm)`;
+    function updateShinyOddsDisplay() {
+        const odds = getShinyOdds(huntingMethod, hasShinyCharm);
+        if (hasShinyCharm) {
+            shinyOddsDisplay.innerHTML = `Shiny Odds: ${odds.withCharm} (With Shiny Charm)`;
+        } else {
+            shinyOddsDisplay.innerHTML = `Shiny Odds: ${odds.withoutCharm} (Without Shiny Charm)`;
+        }
     }
-}
-function getShinyOdds(method, hasCharm) {
-    let withoutCharm = '1/4096'; // Default Gen 8+
-    let withCharm = '1/1365';   // Default Gen 8+
 
-    switch (method) {
-        case 'masuda':
-            withoutCharm = '1/683 (Gen 6+), 1/683 (Gen 5), 1/2048 (Gen 4)';
-            withCharm = '1/512 (Gen 6+), 1/512 (Gen 5), 1/1024 (Gen 4)';
-            break;
-        case 'sos-chaining':
-            withoutCharm = 'Increases with chain, up to 1/315 (Gen 7)';
-            withCharm = 'Increases with chain, up to 1/273 (Gen 7)'; // Specific numbers vary
-            break;
-        case 'chain-fishing':
-            withoutCharm = 'Increases with chain (After 20, odds are the same), up to 1/100 (Gen 6)';
-            withCharm = 'Increases with chain (After 20, odds are the same), up to 1/100 (Gen 6)'; // Specific numbers vary
-            break;
-        case 'friend-safari':
-            withoutCharm = '1/819 (Gen 6)';
-            withCharm = '1/586 (Gen 6)';
-            break;
+    function getShinyOdds(method, hasCharm) {
+        let withoutCharm = '1/4096';
+        let withCharm = '1/1365';
+        switch (method) {
+            case 'masuda':
+                withoutCharm = '1/683 (Gen 6+), 1/683 (Gen 5), 1/2048 (Gen 4)';
+                withCharm = '1/512 (Gen 6+), 1/512 (Gen 5), 1/1024 (Gen 4)';
+                break;
+            case 'sos-chaining':
+                withoutCharm = 'Increases with chain, up to 1/315 (Gen 7)';
+                withCharm = 'Increases with chain, up to 1/273 (Gen 7)';
+                break;
+            case 'chain-fishing':
+                withoutCharm = 'Increases with chain (After 20, odds are the same), up to 1/100 (Gen 6)';
+                withCharm = 'Increases with chain (After 20, odds are the same), up to 1/100 (Gen 6)';
+                break;
+            case 'friend-safari':
+                withoutCharm = '1/819 (Gen 6)';
+                withCharm = '1/586 (Gen 6)';
+                break;
             case 'dexnav':
                 withoutCharm = 'Increases with search level and chain (ORAS) - See: <a href="https://www.serebii.net/omegarubyalphasapphire/dexnav.shtml" target="_blank">Serebii.net</a>';
-                withCharm = 'Higher increase with charm (ORAS) - See: <a href="https://www.serebii.net/omegarubyalphasapphire/dexnav.shtml" target="_blank">Serebii.net</a>'; // Specific numbers vary
+                withCharm = 'Higher increase with charm (ORAS) - See: <a href="https://www.serebii.net/omegarubyalphasapphire/dexnav.shtml" target="_blank">Serebii.net</a>';
                 break;
-        case 'radar-chaining':
-            withoutCharm = 'Increases with chain, up to 1/200 (Gen 4), 1/100 (Gen 6), 1/99 (BDSP)';
-            withCharm = 'Increases with chain, up to 1/200 (Gen 4), 1/100 (Gen 6), 1/99 (BDSP)'; // Specific numbers vary
-            break;
-        case 'dynamax-adventures':
-            withoutCharm = '1/300';
-            withCharm = '1/100';
-            break;
-        case 'outbreaks':
-            withoutCharm = 'Increased odds, varies by game (e.g., 1/1365 in PLA)';
-            withCharm = 'Further increased odds (PLA, SV)'; // Specific numbers vary
-            break;
-        case 'full-odds':
-        case 'encounters':
-        default:
-            withoutCharm = '1/4096 (Gen 6+) / 1/8192 (Gen 1-5)';
-            withCharm = '1/1365 (Gen 6+) / 1/2731 (Gen 5)';
-            break;
+            case 'radar-chaining':
+                withoutCharm = 'Increases with chain, up to 1/200 (Gen 4), 1/100 (Gen 6), 1/99 (BDSP)';
+                withCharm = 'Increases with chain, up to 1/200 (Gen 4), 1/100 (Gen 6), 1/99 (BDSP)';
+                break;
+            case 'dynamax-adventures':
+                withoutCharm = '1/300';
+                withCharm = '1/100';
+                break;
+            case 'outbreaks':
+                withoutCharm = 'Increased odds, varies by game (e.g., 1/1365 in PLA)';
+                withCharm = 'Further increased odds (PLA, SV)';
+                break;
+            case 'full-odds':
+            case 'encounters':
+            default:
+                withoutCharm = '1/4096 (Gen 6+) / 1/8192 (Gen 1-5)';
+                withCharm = '1/1365 (Gen 6+) / 1/2731 (Gen 5)';
+                break;
+        }
+        return { withoutCharm: withoutCharm, withCharm: withCharm };
     }
 
-    return {
-        withoutCharm: withoutCharm,
-        withCharm: withCharm
-    };
-}
-
-function updateCountDisplay() {
-    encounterCountDisplay.textContent = encounterCount;
-    const formattedMethod = huntingMethod
-    .toLowerCase()
-    .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' '); // Format method for display
-
-    let methodText = `Method: ${
-        huntingMethod
+    function updateCountDisplay() {
+        encounterCountDisplay.textContent = encounterCount;
+        const formattedMethod = huntingMethod
             .toLowerCase()
             .split('-')
             .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(' ')
-    }`; // Format method text for display
-    
-    if (currentPokemon) {
-        titleElement.textContent = `Shiny Hunt Tracker - Hunting: ${currentPokemon.charAt(0).toUpperCase() + currentPokemon.slice(1)}`;
-        let pokemonId = getPokemonId(currentPokemon);
-        let imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
-
-        pokemonImage.src = imageUrl;
-        pokemonImage.style.display = 'block';
-        const odds = getShinyOdds(huntingMethod, hasShinyCharm);
-        shinyOdds = `${odds.withoutCharm} (Without Charm) / ${odds.withCharm} (With Charm)`;
-        updateShinyOddsDisplay(); // Update shiny odds display
-
-    } else {
-        titleElement.textContent = `Shiny Hunt Tracker`;
-        pokemonImage.src = '';
-        pokemonImage.style.display = 'none';
+            .join(' ');
+        let methodText = `Method: ${
+            huntingMethod
+                .toLowerCase()
+                .split('-')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ')
+        }`;
+        if (currentPokemon) {
+            titleElement.textContent = `Shiny Hunt Tracker - Hunting: ${currentPokemon.charAt(0).toUpperCase() + currentPokemon.slice(1)}`;
+            let pokemonId = getPokemonId(currentPokemon);
+            let imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
+            pokemonImage.src = imageUrl;
+            pokemonImage.style.display = 'block';
+            updateShinyOddsDisplay();
+        } else {
+            titleElement.textContent = `Shiny Hunt Tracker`;
+            pokemonImage.src = '';
+            pokemonImage.style.display = 'none';
+        }
     }
-}
 
-function getPokemonId(pokemonName) {
-    switch (pokemonName) {
+    function getPokemonId(pokemonName) {
+        switch (pokemonName) {
         case 'bulbasaur': return 1;
         case 'ivysaur': return 2;
         case 'venusaur': return 3;
@@ -1269,213 +1262,168 @@ function getPokemonId(pokemonName) {
         case 'basculegion-female': return 10248;
         case 'enamorus-therian': return 10249
         default: return 0;
-        }
     }
+}
 
-    pokemonSelect.addEventListener('change', () => {
-        currentPokemon = pokemonSelect.value;
+pokemonSelect.addEventListener('change', () => {
+    currentPokemon = pokemonSelect.value;
+    updateCountDisplay();
+    if (currentPokemon !== 'none' && startTime === null) {
+        startTime = new Date();
+    }
+});
+
+incrementButton.addEventListener('click', () => {
+    const selectedPokemon = pokemonSelect.value;
+    if (selectedPokemon !== 'none') {
+        encounteredPokemonCounts[selectedPokemon] = (encounteredPokemonCounts[selectedPokemon] || 0) + 1;
+        encounterCount++;
         updateCountDisplay();
-        if (currentPokemon !== 'none' && startTime === null) {
+        saveProgress();
+        if (startTime === null) {
             startTime = new Date();
         }
-    });
-
-    incrementButton.addEventListener('click', () => {
-        const selectedPokemon = pokemonSelect.value;
-        if (selectedPokemon !== 'none') {
-            encounteredPokemonCounts[selectedPokemon] = (encounteredPokemonCounts[selectedPokemon] || 0) + 1;
-            encounterCount++;
-            updateCountDisplay();
-            saveProgress();
-            if (startTime === null) {
-                startTime = new Date();
-            }
-        } else {
-            alert('Please select a Pokémon before incrementing.');
-        }
-    });
-
-    decrementButton.addEventListener('click', () => {
-        if (encounterCount > 0) {
-            encounterCount--;
-            updateCountDisplay();
-            saveProgress();
-        }
-    });
-
-    resetButton.addEventListener('click', () => {
-        encounterCount = 0;
-        currentPokemon = '';
-        pokemonSelect.value = 'none';
-        huntingMethod = 'encounters';
-        methodSelect.value = 'encounters';
-        hasShinyCharm = false;
-        shinyCharmCheckbox.checked = false;
-        updateShinyOddsDisplay();
-        updateCountDisplay();
-        saveProgress();
-        startTime = null;
-        encounteredPokemonCounts = {};
-    });
-
-    methodSelect.addEventListener('change', () => {
-        huntingMethod = methodSelect.value;
-        updateShinyOddsDisplay();
-        saveProgress();
-    });
-
-    shinyCharmCheckbox.addEventListener('change', () => {
-        hasShinyCharm = shinyCharmCheckbox.checked;
-        updateShinyOddsDisplay();
-        saveProgress();
-    });
-
-    function saveProgress() {
-        localStorage.setItem('encounterCount', encounterCount);
-        localStorage.setItem('selectedPokemon', currentPokemon);
-        localStorage.setItem('huntingMethod', huntingMethod);
-        localStorage.setItem('hasShinyCharm', hasShinyCharm);
-        if (startTime) {
-            localStorage.setItem('startTime', startTime.toISOString());
-        } else {
-            localStorage.removeItem('startTime');
-        }
-        localStorage.setItem('encounteredPokemonCounts', JSON.stringify(encounteredPokemonCounts));
-    }
-
-    function loadProgress() {
-        const savedCount = localStorage.getItem('encounterCount');
-        if (savedCount !== null) {
-            encounterCount = parseInt(savedCount, 10);
-        }
-
-        const savedPokemon = localStorage.getItem('selectedPokemon');
-        if (savedPokemon !== null && savedPokemon !== 'none') {
-            currentPokemon = savedPokemon;
-            pokemonSelect.value = savedPokemon;
-        } else {
-            currentPokemon = '';
-            pokemonSelect.value = 'none';
-        }
-
-        const savedMethod = localStorage.getItem('huntingMethod');
-        if (savedMethod !== null) {
-            huntingMethod = savedMethod;
-            methodSelect.value = savedMethod;
-        }
-
-        const savedShinyCharm = localStorage.getItem('hasShinyCharm');
-        if (savedShinyCharm !== null) {
-            hasShinyCharm = savedShinyCharm === 'true';
-            shinyCharmCheckbox.checked = hasShinyCharm;
-        }
-
-        const savedStartTime = localStorage.getItem('startTime');
-        if (savedStartTime) {
-            startTime = new Date(savedStartTime);
-        }
-
-        const savedEncounterCounts = localStorage.getItem('encounteredPokemonCounts');
-        if (savedEncounterCounts) {
-            encounteredPokemonCounts = JSON.parse(savedEncounterCounts);
-        }
-
-        updateShinyOddsDisplay();
-        updateCountDisplay();
-    }
-
-    function finishHuntAndDownload() {
-        if (currentPokemon === 'none' || !currentPokemon) {
-            alert('Please select a Pokémon to finish the hunt.');
-            return;
-        }
-
-        const endTime = new Date();
-        const huntData = {
-            startTime: startTime ? startTime.toISOString() : null,
-            endTime: endTime.toISOString(),
-            date: endTime.toLocaleDateString(),
-            pokemon: currentPokemon,
-            method: methodSelect.value,
-            shinyCharm: shinyCharmCheckbox.checked,
-            encounters: encounterCount,
-            encounteredCounts: encounteredPokemonCounts,
-            notes: huntNotesInput.value
-        };
-
-        const jsonData = JSON.stringify(huntData, null, 2);
-        const blob = new Blob([jsonData], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const filename = `shiny_hunt_${currentPokemon.replace(/ /g, '_')}_${endTime.toISOString().replace(/:/g, '-')}.json`;
-
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-
-        alert('Hunt data downloaded as a JSON file.');
-
-        encounterCount = 0;
-        currentPokemon = '';
-        pokemonSelect.value = 'none';
-        methodSelect.value = 'encounters';
-        shinyCharmCheckbox.checked = false;
-        startTime = null;
-        encounteredPokemonCounts = {};
-        updateCountDisplay();
-        saveProgress();
-    }
-
-    if (finishHuntButton) {
-        finishHuntButton.addEventListener('click', function() {
-            const pokemonSelect = document.getElementById('pokemon-select');
-            const encounterCountDisplay = document.getElementById('encounter-count-value');
-            const methodSelect = document.getElementById('method-select');
-            const shinyCharmCheckbox = document.getElementById('shiny-charm');
-
-            const currentPokemon = pokemonSelect.value;
-            const encounterCount = parseInt(encounterCountDisplay.textContent, 10) || 0;
-            const notes = huntNotesInput.value;
-            const method = methodSelect.value;
-            const hasShinyCharm = shinyCharmCheckbox.checked;
-
-            if (currentPokemon === 'none') {
-                alert('Please select a Pokémon to finish the hunt.');
-                return;
-            }
-
-            const endTime = new Date();
-            const huntData = {
-                startTime: localStorage.getItem('startTime') || null,
-                endTime: endTime.toISOString(),
-                date: endTime.toLocaleDateString(),
-                pokemon: currentPokemon,
-                method: method,
-                shinyCharm: hasShinyCharm,
-                encounters: encounterCount,
-                notes: notes
-            };
-
-            const jsonData = JSON.stringify(huntData, null, 2);
-            const blob = new Blob([jsonData], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const filename = `shiny_hunt_${currentPokemon.replace(/ /g, '_')}_${endTime.toISOString().replace(/:/g, '-')}.json`;
-
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-
-            alert('Hunt data downloaded as a JSON file.');
-        });
     } else {
-        console.error("Finish hunt button not found in the DOM.");
+        alert('Please select a Pokémon before incrementing.');
+    }
+});
+
+decrementButton.addEventListener('click', () => {
+    if (encounterCount > 0) {
+        encounterCount--;
+        updateCountDisplay();
+        saveProgress();
+    }
+});
+
+resetButton.addEventListener('click', () => {
+    encounterCount = 0;
+    currentPokemon = '';
+    pokemonSelect.value = 'none';
+    huntingMethod = 'encounters';
+    methodSelect.value = 'encounters';
+    hasShinyCharm = false;
+    shinyCharmCheckbox.checked = false;
+    updateShinyOddsDisplay();
+    updateCountDisplay();
+    saveProgress();
+    startTime = null;
+    encounteredPokemonCounts = {};
+});
+
+methodSelect.addEventListener('change', () => {
+    huntingMethod = methodSelect.value;
+    updateShinyOddsDisplay();
+    saveProgress();
+});
+
+shinyCharmCheckbox.addEventListener('change', () => {
+    hasShinyCharm = shinyCharmCheckbox.checked;
+    updateShinyOddsDisplay();
+    saveProgress();
+});
+
+function saveProgress() {
+    localStorage.setItem('encounterCount', encounterCount);
+    localStorage.setItem('selectedPokemon', currentPokemon);
+    localStorage.setItem('huntingMethod', huntingMethod);
+    localStorage.setItem('hasShinyCharm', hasShinyCharm);
+    if (startTime) {
+        localStorage.setItem('startTime', startTime.toISOString());
+    } else {
+        localStorage.removeItem('startTime');
+    }
+    localStorage.setItem('encounteredPokemonCounts', JSON.stringify(encounteredPokemonCounts));
+}
+
+function loadProgress() {
+    const savedCount = localStorage.getItem('encounterCount');
+    if (savedCount !== null) {
+        encounterCount = parseInt(savedCount, 10);
+    }
+    const savedPokemon = localStorage.getItem('selectedPokemon');
+    if (savedPokemon !== null && savedPokemon !== 'none') {
+        currentPokemon = savedPokemon;
+        pokemonSelect.value = savedPokemon;
+    } else {
+        currentPokemon = '';
+        pokemonSelect.value = 'none';
+    }
+    const savedMethod = localStorage.getItem('huntingMethod');
+    if (savedMethod !== null) {
+        huntingMethod = savedMethod;
+        methodSelect.value = savedMethod;
+    }
+    const savedShinyCharm = localStorage.getItem('hasShinyCharm');
+    if (savedShinyCharm !== null) {
+        hasShinyCharm = savedShinyCharm === 'true';
+        shinyCharmCheckbox.checked = hasShinyCharm;
+    }
+    const savedStartTime = localStorage.getItem('startTime');
+    if (savedStartTime) {
+        startTime = new Date(savedStartTime);
+    }
+    const savedEncounterCounts = localStorage.getItem('encounteredPokemonCounts');
+    if (savedEncounterCounts) {
+        encounteredPokemonCounts = JSON.parse(savedEncounterCounts);
+    }
+    updateShinyOddsDisplay();
+    updateCountDisplay();
+}
+
+function finishHuntAndDownload() {
+    if (currentPokemon === 'none' || !currentPokemon) {
+        alert('Please select a Pokémon to finish the hunt.');
+        return;
     }
 
-    loadProgress();
+    const endTime = new Date();
+    let csvContent = "Data,Value\n"; // CSV header
+    csvContent += `Start Time,${startTime ? startTime.toISOString() : ''}\n`;
+    csvContent += `End Time,${endTime.toISOString()}\n`;
+    csvContent += `Date,${endTime.toLocaleDateString()}\n`;
+    csvContent += `Pokemon,${currentPokemon}\n`;
+    csvContent += `Method,${methodSelect.value}\n`;
+    csvContent += `Shiny Charm,${shinyCharmCheckbox.checked ? 'Yes' : 'No'}\n`;
+    csvContent += `Encounters,${encounterCount}\n`;
+    csvContent += `Notes,"${huntNotesInput.value.replace(/"/g, '""')}"\n`; // Escape double quotes
+
+    // Add encountered Pokemon counts
+    csvContent += "\nEncountered Pokemon,Count\n";
+    for (const pokemon in encounteredPokemonCounts) {
+        csvContent += `${pokemon},${encounteredPokemonCounts[pokemon]}\n`;
+    }
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const filename = `shiny_hunt_${currentPokemon.replace(/ /g, '_')}_${endTime.toISOString().replace(/:/g, '-')}.csv`;
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    alert('Hunt data downloaded as a CSV file.');
+
+    encounterCount = 0;
+    currentPokemon = '';
+    pokemonSelect.value = 'none';
+    methodSelect.value = 'encounters';
+    shinyCharmCheckbox.checked = false;
+    startTime = null;
+    encounteredPokemonCounts = {};
+    updateCountDisplay();
+    saveProgress();
+}
+
+if (finishHuntButton) {
+    finishHuntButton.addEventListener('click', finishHuntAndDownload);
+} else {
+    console.error("Finish hunt button not found in the DOM.");
+}
+
+loadProgress();
+});
