@@ -1,0 +1,191 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #000000;
+    margin: 0;
+}
+
+.container {
+    background-color: #333;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container h1 { /* Main header */
+    margin-bottom: 20px;
+    color: #fff;
+    order: 1;
+    width: 100%;
+}
+
+.container > div:nth-child(2) { /* Select container */
+    order: 2;
+    margin-bottom: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container > div:nth-child(2) label {
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+#pokemon-select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #444;
+    color: #fff;
+    font-size: 1em;
+    width: 80%;
+    max-width: 300px;
+}
+
+.container > div:nth-child(3) { /* Method select container */
+    order: 3;
+    margin-bottom: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container > div:nth-child(3) label {
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+#method-select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #444;
+    color: #fff;
+    font-size: 1em;
+    width: 80%;
+    max-width: 300px;
+}
+
+.container > div:nth-child(4) { /* Shiny charm checkbox container */
+    order: 4;
+    margin-bottom: 15px;
+    color: white;
+}
+
+#shiny-odds {
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    color: white;
+    order: 5;
+    width: 100%;
+    text-align: center;
+}
+
+#pokemon-image-container {
+    order: 6; /* Below the select */
+    margin-bottom: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+}
+
+#pokemon-image {
+    max-width: 150px;
+    max-height: 150px;
+    display: block;
+}
+
+#encounter-count { /* The counter text */
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #007bff;
+    font-weight: bold;
+    order: 7;
+    width: 100%;
+}
+
+.container > div:nth-child(8) { /* Increment/Decrement/Reset Buttons container */
+    order: 8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.container > div:nth-child(8) button {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px 10px;
+    background-color: #007bff; /* Default blue color */
+    color: white;
+}
+
+.container > div:nth-child(8) button:hover {
+    opacity: 0.9;
+}
+
+#decrement-button {
+    background-color: #dc3545; /* Red for decrement */
+}
+
+#reset-button {
+    background-color: #ffc107; /* Yellow for reset */
+    color: #333;
+}
+
+.container > div:nth-child(9) { /* Notes textarea container */
+    order: 9;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+#huntNotes {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #444;
+    color: #fff;
+    font-size: 1em;
+    width: 80%;
+    max-width: 300px;
+    height: 80px;
+}
+
+.container > div:nth-child(10) { /* Finish Hunt Button container */
+    order: 10;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#finish-hunt-button {
+    padding: 12px 25px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #28a745; /* Green for finish */
+    color: white;
+}
+
+#finish-hunt-button:hover {
+    opacity: 0.9;
+}
