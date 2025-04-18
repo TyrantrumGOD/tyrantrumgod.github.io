@@ -1417,6 +1417,9 @@ function finishHuntAndDownload() {
     encounteredPokemonCounts = {};
     updateCountDisplay();
     saveProgress();
+
+    // Add this line to clear the textarea
+    huntNotesInput.value = '';
 }
 
 if (finishHuntButton) {
