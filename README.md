@@ -54,7 +54,7 @@ This project is open-source and available under the [Specify License Here] licen
 
 ## Acknowledgements
 
-* [Mention any libraries, APIs, or resources you used, e.g., PokeAPI for Pokémon images (if applicable)].
+* PokeAPI for Pokémon images
 
 ---
 
