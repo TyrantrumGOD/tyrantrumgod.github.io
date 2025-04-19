@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shiny Hunt Tracker</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tyr's Shiny Hunt Tracker</title>
+        <link rel="stylesheet" href="style.css"> </head>
 <body>
     <div class="tyrantrum-left">
         <img class="tyrantrum-left-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/697.png" alt="Tyrantrum">
@@ -1178,49 +1177,407 @@
                 <option value="iron-crown">Iron Crown</option>
                 <option value="terapagos">Terapagos</option>
                 <option value="pecharunt">Pecharunt</option>
-                </select>
+            </select>
+        </div>
+        <div>
+            <label for="method-select">Method:</label>
+            <select id="method-select">
+                <option value="encounters" selected>Encounters</option>
+                <option value="masuda">Masuda Method</option>
+                <option value="full-odds">Full Odds</option>
+                <option value="sos-chaining">SOS Chaining</option>
+                <option value="chain-fishing">Chain Fishing</option>
+                <option value="horde-encounters">Horde Encounters</option>
+                <option value="friend-safari">Friend Safari</option>
+                <option value="dexnav">DexNav</option>
+                <option value="radar-chaining">Pokeradar Chaining</option>
+                <option value="dynamax-adventures">Dynamax Adventures</option>
+                <option value="outbreaks">Mass Outbreaks</option>
+            </select>
+        </div>
+        <div>
+            <input type="checkbox" id="shiny-charm">
+            <label for="shiny-charm">Have Shiny Charm?</label>
+        </div>
+        <p id="shiny-odds">Shiny Odds: 1/4096</p>
+        <div id="pokemon-image-container">
+            <img id="pokemon-image" src="" alt="Selected Pokémon">
+        </div>
+        <p id="encounter-count">Encounter Count: <span id="encounter-count-value">0</span></p>
+        <div>
+            <button id="increment-button">Increment</button>
+            <button id="decrement-button">Decrement</button>
+            <button id="reset-button">Reset</button>
+        </div>
+        <div>
+            <textarea id="huntNotes" placeholder="Add any notes about this hunt"></textarea>
+        </div>
+        <div>
+            <button id="finish-hunt-button">Finish Hunt and Download Data</button>
+        </div>
+    </div>
+    <div class="tyrantrum-right">
+        <img class="tyrantrum-right-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/697.png" alt="Tyrantrum">
+    </div>
+    <div id="shiny-pokedex-container">
+        <h2>Shiny Pokedex</h2>
+        <div id="shiny-pokedex">
+            </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const BUILD_NUMBER = 'v1.0.0-beta.3'; // Ensure this is defined
 
-            </div>
-            <div>
-                <label for="method-select">Method:</label>
-                <select id="method-select">
-                    <option value="encounters" selected>Encounters</option>
-                    <option value="masuda">Masuda Method</option>
-                    <option value="full-odds">Full Odds</option>
-                    <option value="sos-chaining">SOS Chaining</option>
-                    <option value="chain-fishing">Chain Fishing</option>
-                    <option value="horde-encounters">Horde Encounters</option>
-                    <option value="friend-safari">Friend Safari</option>
-                    <option value="dexnav">DexNav</option>
-                    <option value="radar-chaining">Pokeradar Chaining</option>
-                    <option value="dynamax-adventures">Dynamax Adventures</option>
-                    <option value="outbreaks">Mass Outbreaks</option>
-                    </select>
-            </div>
-            <div>
-                <input type="checkbox" id="shiny-charm">
-                <label for="shiny-charm">Have Shiny Charm?</label>
-            </div>
-            <p id="shiny-odds">Shiny Odds: 1/4096</p>
-            <div id="pokemon-image-container">
-                <img id="pokemon-image" src="" alt="Selected Pokémon">
-            </div>
-            <p id="encounter-count">Encounter Count: <span id="encounter-count-value">0</span></p>
-            <div>
-                <button id="increment-button">Increment</button>
-                <button id="decrement-button">Decrement</button>
-                <button id="reset-button">Reset</button>
-            </div>
-            <div>
-                <textarea id="huntNotes" placeholder="Add any notes about this hunt"></textarea>
-            </div>
-            <div>
-                <button id="finish-hunt-button">Finish Hunt and Download Data</button>
-            </div>
-        </div>
-        <div class="tyrantrum-right">
-            <img class="tyrantrum-right-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/697.png" alt="Tyrantrum">
-        </div>
-        <script src="script.js"></script>
-    </body>
-    </html>>
+            // Create and add the build number header
+            const buildHeader = document.createElement('div');
+            buildHeader.id = 'build-number-header';
+            buildHeader.textContent = `Build: ${BUILD_NUMBER}`;
+            document.body.insertBefore(buildHeader, document.body.firstChild);
+
+            const encounterCountDisplay = document.getElementById('encounter-count-value');
+            const incrementButton = document.getElementById('increment-button');
+            const decrementButton = document.getElementById('decrement-button');
+            const resetButton = document.getElementById('reset-button');
+            const pokemonSelect = document.getElementById('pokemon-select');
+            const titleElement = document.querySelector('h1');
+            const pokemonImage = document.getElementById('pokemon-image');
+            const methodSelect = document.getElementById('method-select');
+            const shinyOddsDisplay = document.getElementById('shiny-odds');
+            const shinyCharmCheckbox = document.getElementById('shiny-charm');
+            const finishHuntButton = document.getElementById('finish-hunt-button');
+            const huntNotesInput = document.getElementById('huntNotes');
+            const tyrantrumLeftImage = document.querySelector('.tyrantrum-left-image');
+            const tyrantrumRightImage = document.querySelector('.tyrantrum-right-image');
+            const tyrantrumId = 697; // Tyrantrum's PokeAPI ID
+            const tyrantrumImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${tyrantrumId}.png`;
+            const shinyPokedex = document.getElementById('shiny-pokedex');
+            let completedHunts = loadCompletedHunts(); // Load from localStorage
+
+            const fullPokedex = [
+            { name: 'bulbasaur', id: 1, region: 'kanto' },
+            { name: 'ivysaur', id: 2, region: 'kanto' },
+            { name: 'venusaur', id: 3, region: 'kanto' },
+            { name: 'charmander', id: 4, region: 'kanto' },
+            { name: 'charmeleon', id: 5, region: 'kanto' },
+            { name: 'charizard', id: 6, region: 'kanto' },
+            { name: 'chikorita', id: 152, region: 'johto' },
+            { name: 'bayleef', id: 153, region: 'johto' },
+            { name: 'meganium', id: 154, region: 'johto' },
+            { name: 'treecko', id: 252, region: 'hoenn' },
+            { name: 'grovyle', id: 253, region: 'hoenn' },
+            { name: 'sceptile', id: 254, region: 'hoenn' },
+            { name: 'turtwig', id: 387, region: 'sinnoh' },
+            { name: 'grotle', id: 388, region: 'sinnoh' },
+            { name: 'torterra', id: 389, region: 'sinnoh' },
+            { name: 'snivy', id: 495, region: 'unova' },
+            { name: 'servine', id: 496, region: 'unova' },
+            { name: 'serperior', id: 497, region: 'unova' },
+            { name: 'chespin', id: 650, region: 'kalos' },
+            { name: 'quilladin', id: 651, region: 'kalos' },
+            { name: 'chesnaught', id: 652, region: 'kalos' },
+            { name: 'rowlet', id: 722, region: 'alola' },
+            { name: 'dartrix', id: 723, region: 'alola' },
+            { name: 'decidueye', id: 724, region: 'alola' },
+            { name: 'grookey', id: 810, region: 'galar' },
+            { name: 'thwackey', id: 811, region: 'galar' },
+            { name: 'rillaboom', id: 812, region: 'galar' },
+            { name: 'typhlosion-hisui',id: 10233, region: 'hisui' },
+            { name: 'samurott-hisui', id: 10236, region: 'hisui'},
+            { name: 'decidueye-hisui', id: 10244, region: 'hisui' },
+            { name: 'sprigatito', id: 906, region: 'paldea' },
+            { name: 'floragato', id: 907, region: 'paldea' },
+            { name: 'meowscarada', id: 908, region: 'paldea' },
+            // ... add other Pokémon with their regions ...
+            ];
+
+    let encounterCount = 0;
+    let currentPokemon = '';
+    let huntingMethod = 'Encounters';
+    let hasShinyCharm = false;
+    let startTime = null;
+    let encounteredPokemonCounts = {};
+
+    if (tyrantrumLeftImage) {
+        tyrantrumLeftImage.src = tyrantrumImageUrl;
+    } else {
+        console.error("Left Tyrantrum image element not found.");
+    }
+
+    if (tyrantrumRightImage) {
+        tyrantrumRightImage.src = tyrantrumImageUrl;
+    } else {
+        console.error("Right Tyrantrum image element not found.");
+    }
+
+    function loadCompletedHunts() {
+        const storedHunts = localStorage.getItem('completedHunts');
+        return storedHunts ? JSON.parse(storedHunts) : [];
+    }
+
+    function saveCompletedHunts() {
+        localStorage.setItem('completedHunts', JSON.stringify(completedHunts));
+    }
+
+    function displayPokedex() {
+        if (!shinyPokedex) return;
+        shinyPokedex.innerHTML = ''; // Clear existing display
+
+        const totalPokemon = fullPokedex.length;
+        const caughtPokemonCount = completedHunts.length;
+        const remainingPokemon = totalPokemon - caughtPokemonCount;
+
+        const overallProgressText = document.createElement('p');
+        overallProgressText.textContent = `Overall Progress: ${caughtPokemonCount} / ${totalPokemon} Shiny Pokémon Caught (${remainingPokemon} Remaining)`;
+        shinyPokedex.before(overallProgressText); // Insert overall progress above the regions
+
+        // Group Pokémon by region
+        const pokedexByRegion = fullPokedex.reduce((acc, pokemon) => {
+            if (!acc[pokemon.region]) {
+                acc[pokemon.region] = [];
+            }
+            acc[pokemon.region].push(pokemon);
+            return acc;
+        }, {});
+
+        const regionOrder = ['kanto', 'johto', 'hoenn', 'sinnoh', 'unova', 'kalos', 'alola', 'galar', 'hisui', 'paldea'];
+
+        regionOrder.forEach(region => {
+            if (pokedexByRegion[region]) {
+                const regionPokemon = pokedexByRegion[region];
+                const regionTotal = regionPokemon.length;
+                const regionCaught = regionPokemon.filter(pokemon => completedHunts.includes(pokemon.name)).length;
+                const regionRemaining = regionTotal - regionCaught;
+
+                const regionTitle = document.createElement('h3');
+                regionTitle.textContent = `${region.charAt(0).toUpperCase() + region.slice(1)} (${regionCaught}/${regionTotal} Caught, ${regionRemaining} Remaining)`;
+                shinyPokedex.appendChild(regionTitle);
+
+                const regionContainer = document.createElement('div');
+                regionContainer.classList.add('region-container');
+                shinyPokedex.appendChild(regionContainer);
+
+                regionPokemon.forEach(pokemon => {
+                    const entryDiv = document.createElement('div');
+                    entryDiv.classList.add('pokedex-entry');
+                    const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`;
+                    const img = document.createElement('img');
+                    img.src = imageUrl;
+                    img.alt = pokemon.name;
+                    const nameSpan = document.createElement('span');
+                    nameSpan.textContent = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+
+                    if (completedHunts.includes(pokemon.name)) {
+                        entryDiv.classList.add('caught');
+                        entryDiv.appendChild(img);
+                        entryDiv.appendChild(nameSpan);
+                    } else {
+                        entryDiv.classList.add('shadowed');
+                        img.style.filter = 'grayscale(100%)';
+                        img.style.opacity = '0.3';
+                        nameSpan.style.color = '#777';
+                        entryDiv.appendChild(img);
+                        entryDiv.appendChild(nameSpan);
+                    }
+                    regionContainer.appendChild(entryDiv);
+                });
+            }
+        });
+    }
+
+    function updateShinyOddsDisplay() {
+        const odds = getShinyOdds(huntingMethod, hasShinyCharm);
+        if (hasShinyCharm) {
+            shinyOddsDisplay.innerHTML = `Shiny Odds: ${odds.withCharm} (With Shiny Charm)`;
+        } else {
+            shinyOddsDisplay.innerHTML = `Shiny Odds: ${odds.withoutCharm} (Without Shiny Charm)`;
+        }
+    }
+
+    function getShinyOdds(method, hasCharm) {
+        let withoutCharm = '1/4096';
+        let withCharm = '1/1365';
+        switch (method) {
+            case 'masuda':
+                withoutCharm = '1/683 (Gen 6+), 1/683 (Gen 5), 1/2048 (Gen 4)';
+                withCharm = '1/512 (Gen 6+), 1/512 (Gen 5), 1/1024 (Gen 4)';
+                break;
+            case 'sos-chaining':
+                withoutCharm = 'Increases with chain, up to 1/315 (Gen 7)';
+                withCharm = 'Increases with chain, up to 1/273 (Gen 7)';
+                break;
+            case 'chain-fishing':
+                withoutCharm = 'Increases with chain (After 20, odds are the same), up to 1/100 (Gen 6)';
+                withCharm = 'Increases with chain (After 20, odds are the same), up to 1/100 (Gen 6)';
+                break;
+            case 'friend-safari':
+                withoutCharm = '1/819 (Gen 6)';
+                withCharm = '1/586 (Gen 6)';
+                break;
+            case 'dexnav':
+                withoutCharm = 'Increases with search level and chain (ORAS) - See: <a href="https://www.serebii.net/omegarubyalphasapphire/dexnav.shtml" target="_blank">Serebii.net</a>';
+                withCharm = 'Higher increase with charm (ORAS) - See: <a href="https://www.serebii.net/omegarubyalphasapphire/dexnav.shtml" target="_blank">Serebii.net</a>';
+                break;
+            case 'radar-chaining':
+                withoutCharm = 'Increases with chain, up to 1/200 (Gen 4), 1/100 (Gen 6), 1/99 (BDSP)';
+                withCharm = 'Increases with chain, up to 1/200 (Gen 4), 1/100 (Gen 6), 1/99 (BDSP)';
+                break;
+            case 'dynamax-adventures':
+                withoutCharm = '1/300';
+                withCharm = '1/100';
+                break;
+            case 'outbreaks':
+                withoutCharm = 'Increased odds, varies by game (e.g., 1/1365 in PLA)';
+                withCharm = 'Further increased odds (PLA, SV)';
+            break;
+            case 'full-odds':
+            case 'encounters':
+            default:
+                withoutCharm = '1/4096 (Gen 6+) / 1/8192 (Gen 1-5)';
+                withCharm = '1/1365 (Gen 6+) / 1/2731 (Gen 5)';
+                break;
+        }
+        return { withoutCharm: withoutCharm, withCharm: withCharm };
+    }
+
+    function updateCountDisplay() {
+        encounterCountDisplay.textContent = encounterCount;
+        const formattedMethod = huntingMethod
+            .toLowerCase()
+            .split('-')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+        let methodText = `Method: ${
+            huntingMethod
+                .toLowerCase()
+                .split('-')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ')
+    }`;
+        if (currentPokemon) {
+            titleElement.textContent = `Shiny Hunt Tracker - Hunting: ${currentPokemon.charAt(0).toUpperCase() + currentPokemon.slice(1)}`;
+            let pokemonId = getPokemonId(currentPokemon);
+            let imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
+            pokemonImage.src = imageUrl;
+            pokemonImage.style.display = 'block';
+        updateShinyOddsDisplay();
+        } else {
+            titleElement.textContent = `Shiny Hunt Tracker`;
+            pokemonImage.src = '';
+            pokemonImage.style.display = 'none';
+        }
+    }
+
+                    function getPokemonId(pokemonName) {
+                    switch (pokemonName) {
+                    case 'bulbasaur': return 1;
+                    case 'ivysaur': return 2;
+                    case 'venusaur': return 3;
+                    case 'charmander': return 4;
+                    case 'charmeleon': return 5;
+                    case 'charizard': return 6;
+                    case 'chikorita': return 152;
+                    case 'bayleef': return 153;
+                    case 'meganium': return 154;
+                    case 'treecko': return 252;
+                    case 'grovyle': return 253;
+                    case 'sceptile': return 254;
+                    case 'snivy': return 495;
+                    case 'servine': return 496;
+                    case 'serperior': return 497;
+                    case 'chespin': return 650;
+                    case 'quilladin': return 651;
+                    case 'chesnaught': return 652;
+                    case 'grookey': return 810;
+                    case 'thwackey': return 811;
+                    case 'rillaboom': return 812;
+                    default: return 0; // Or handle unknown Pokemon differently
+                }
+            }
+
+            function finishHuntAndDownload() {
+                if (currentPokemon) {
+                    completedHunts.push(currentPokemon);
+                    saveCompletedHunts();
+                    displayPokedex();
+                    downloadData();
+                    resetHunt();
+                } else {
+                    alert('Please select a Pokémon before finishing the hunt.');
+                }
+            }
+
+            function downloadData() {
+                const filename = `shiny_hunt_data_${currentPokemon}_${new Date().toISOString().slice(0, 19).replace(/[-:T]/g, '')}.txt`;
+                const data = `Pokemon: ${currentPokemon}\nEncounters: ${encounterCount}\nMethod: ${huntingMethod}\nShiny Charm: ${hasShinyCharm ? 'Yes' : 'No'}\nNotes: ${huntNotesInput.value}\nCompleted on: ${new Date().toLocaleString()}`;
+                const blob = new Blob([data], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+
+            function resetHunt() {
+                encounterCount = 0;
+                currentPokemon = '';
+                huntingMethod = 'Encounters';
+                hasShinyCharm = false;
+                huntNotesInput.value = '';
+                pokemonSelect.value = 'none';
+                methodSelect.value = 'encounters';
+                shinyCharmCheckbox.checked = false;
+                updateCountDisplay();
+                updateShinyOddsDisplay();
+            }
+
+            incrementButton.addEventListener('click', function() {
+                encounterCount++;
+                updateCountDisplay();
+            });
+
+            decrementButton.addEventListener('click', function() {
+                if (encounterCount > 0) {
+                    encounterCount--;
+                    updateCountDisplay();
+                }
+            });
+
+            resetButton.addEventListener('click', resetHunt);
+
+            pokemonSelect.addEventListener('change', function() {
+                currentPokemon = this.value;
+                updateCountDisplay();
+            });
+
+            methodSelect.addEventListener('change', function() {
+                huntingMethod = this.value;
+                updateShinyOddsDisplay();
+            });
+
+            shinyCharmCheckbox.addEventListener('change', function() {
+                hasShinyCharm = this.checked;
+                updateShinyOddsDisplay();
+            });
+
+            finishHuntButton.addEventListener('click', finishHuntAndDownload);
+
+            // Initial setup
+            updateCountDisplay();
+            updateShinyOddsDisplay();
+            displayPokedex();
+        });
+
+        function loadCompletedHunts() {
+            const storedHunts = localStorage.getItem('completedHunts');
+            return storedHunts ? JSON.parse(storedHunts) : [];
+        }
+
+        function saveCompletedHunts() {
+            localStorage.setItem('completedHunts', JSON.stringify(completedHunts));
+        }
+    </script>
+</body>
+</html>

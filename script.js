@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const BUILD_NUMBER = 'v1.0.0-beta.3'; // Ensure this is defined
+
+    // Create and add the build number header
+    const buildHeader = document.createElement('div');
+    buildHeader.id = 'build-number-header';
+    buildHeader.textContent = `Build: ${BUILD_NUMBER}`;
+    document.body.insertBefore(buildHeader, document.body.firstChild);
+
     const encounterCountDisplay = document.getElementById('encounter-count-value');
     const incrementButton = document.getElementById('increment-button');
     const decrementButton = document.getElementById('decrement-button');
@@ -15,6 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const tyrantrumRightImage = document.querySelector('.tyrantrum-right-image');
     const tyrantrumId = 697; // Tyrantrum's PokeAPI ID
     const tyrantrumImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${tyrantrumId}.png`;
+    const shinyPokedex = document.getElementById('shiny-pokedex');
+    let completedHunts = loadCompletedHunts(); // Load from localStorage
 
     let encounterCount = 0;
     let currentPokemon = '';
@@ -28,11 +38,40 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.error("Left Tyrantrum image element not found.");
     }
-    
+
     if (tyrantrumRightImage) {
         tyrantrumRightImage.src = tyrantrumImageUrl;
     } else {
         console.error("Right Tyrantrum image element not found.");
+    }
+
+    function loadCompletedHunts() {
+        const storedHunts = localStorage.getItem('completedHunts');
+        return storedHunts ? JSON.parse(storedHunts) : [];
+    }
+
+    function saveCompletedHunts() {
+        localStorage.setItem('completedHunts', JSON.stringify(completedHunts));
+    }
+
+    function displayPokedex() {
+        if (!shinyPokedex) return; // Exit if the element doesn't exist
+        shinyPokedex.innerHTML = ''; // Clear existing display
+        completedHunts.forEach(pokemonName => {
+            const entryDiv = document.createElement('div');
+            entryDiv.classList.add('pokedex-entry');
+            const pokemonId = getPokemonId(pokemonName); // Reuse your function
+            const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
+            const img = document.createElement('img');
+            img.src = imageUrl;
+            img.alt = pokemonName;
+            const nameSpan = document.createElement('span');
+            nameSpan.textContent = pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1);
+
+            entryDiv.appendChild(img);
+            entryDiv.appendChild(nameSpan);
+            shinyPokedex.appendChild(entryDiv);
+        });
     }
 
     function updateShinyOddsDisplay() {
@@ -1278,171 +1317,184 @@ document.addEventListener('DOMContentLoaded', function() {
         case 'basculegion-female': return 10248;
         case 'enamorus-therian': return 10249
         default: return 0;
+        }
     }
-}
 
-pokemonSelect.addEventListener('change', () => {
-    currentPokemon = pokemonSelect.value;
-    updateCountDisplay();
-    if (currentPokemon !== 'none' && startTime === null) {
-        startTime = new Date();
-    }
-});
-
-incrementButton.addEventListener('click', () => {
-    const selectedPokemon = pokemonSelect.value;
-    if (selectedPokemon !== 'none') {
-        encounteredPokemonCounts[selectedPokemon] = (encounteredPokemonCounts[selectedPokemon] || 0) + 1;
-        encounterCount++;
+    pokemonSelect.addEventListener('change', () => {
+        currentPokemon = pokemonSelect.value;
         updateCountDisplay();
-        saveProgress();
-        if (startTime === null) {
+        if (currentPokemon !== 'none' && startTime === null) {
             startTime = new Date();
         }
-    } else {
-        alert('Please select a Pokémon before incrementing.');
-    }
-});
+    });
 
-decrementButton.addEventListener('click', () => {
-    if (encounterCount > 0) {
-        encounterCount--;
-        updateCountDisplay();
-        saveProgress();
-    }
-});
+    incrementButton.addEventListener('click', () => {
+        const selectedPokemon = pokemonSelect.value;
+        if (selectedPokemon !== 'none') {
+            encounteredPokemonCounts[selectedPokemon] = (encounteredPokemonCounts[selectedPokemon] || 0) + 1;
+            encounterCount++;
+            updateCountDisplay();
+            saveProgress();
+            if (startTime === null) {
+                startTime = new Date();
+            }
+        } else {
+            alert('Please select a Pokémon before incrementing.');
+        }
+    });
 
-resetButton.addEventListener('click', () => {
-    encounterCount = 0;
-    currentPokemon = '';
-    pokemonSelect.value = 'none';
-    huntingMethod = 'encounters';
-    methodSelect.value = 'encounters';
-    hasShinyCharm = false;
-    shinyCharmCheckbox.checked = false;
-    updateShinyOddsDisplay();
-    updateCountDisplay();
-    saveProgress();
-    startTime = null;
-    encounteredPokemonCounts = {};
-});
+    decrementButton.addEventListener('click', () => {
+        if (encounterCount > 0) {
+            encounterCount--;
+            updateCountDisplay();
+            saveProgress();
+        }
+    });
 
-methodSelect.addEventListener('change', () => {
-    huntingMethod = methodSelect.value;
-    updateShinyOddsDisplay();
-    saveProgress();
-});
-
-shinyCharmCheckbox.addEventListener('change', () => {
-    hasShinyCharm = shinyCharmCheckbox.checked;
-    updateShinyOddsDisplay();
-    saveProgress();
-});
-
-function saveProgress() {
-    localStorage.setItem('encounterCount', encounterCount);
-    localStorage.setItem('selectedPokemon', currentPokemon);
-    localStorage.setItem('huntingMethod', huntingMethod);
-    localStorage.setItem('hasShinyCharm', hasShinyCharm);
-    if (startTime) {
-        localStorage.setItem('startTime', startTime.toISOString());
-    } else {
-        localStorage.removeItem('startTime');
-    }
-    localStorage.setItem('encounteredPokemonCounts', JSON.stringify(encounteredPokemonCounts));
-}
-
-function loadProgress() {
-    const savedCount = localStorage.getItem('encounterCount');
-    if (savedCount !== null) {
-        encounterCount = parseInt(savedCount, 10);
-    }
-    const savedPokemon = localStorage.getItem('selectedPokemon');
-    if (savedPokemon !== null && savedPokemon !== 'none') {
-        currentPokemon = savedPokemon;
-        pokemonSelect.value = savedPokemon;
-    } else {
+    resetButton.addEventListener('click', () => {
+        encounterCount = 0;
         currentPokemon = '';
         pokemonSelect.value = 'none';
-    }
-    const savedMethod = localStorage.getItem('huntingMethod');
-    if (savedMethod !== null) {
-        huntingMethod = savedMethod;
-        methodSelect.value = savedMethod;
-    }
-    const savedShinyCharm = localStorage.getItem('hasShinyCharm');
-    if (savedShinyCharm !== null) {
-        hasShinyCharm = savedShinyCharm === 'true';
-        shinyCharmCheckbox.checked = hasShinyCharm;
-    }
-    const savedStartTime = localStorage.getItem('startTime');
-    if (savedStartTime) {
-        startTime = new Date(savedStartTime);
-    }
-    const savedEncounterCounts = localStorage.getItem('encounteredPokemonCounts');
-    if (savedEncounterCounts) {
-        encounteredPokemonCounts = JSON.parse(savedEncounterCounts);
-    }
-    updateShinyOddsDisplay();
-    updateCountDisplay();
-}
+        huntingMethod = 'encounters';
+        methodSelect.value = 'encounters';
+        hasShinyCharm = false;
+        shinyCharmCheckbox.checked = false;
+        updateShinyOddsDisplay();
+        updateCountDisplay();
+        saveProgress();
+        startTime = null;
+        encounteredPokemonCounts = {};
+    });
 
-function finishHuntAndDownload() {
-    if (currentPokemon === 'none' || !currentPokemon) {
-        alert('Please select a Pokémon to finish the hunt.');
-        return;
-    }
+    methodSelect.addEventListener('change', () => {
+        huntingMethod = methodSelect.value;
+        updateShinyOddsDisplay();
+        saveProgress();
+    });
 
-    const endTime = new Date();
-    let csvContent = "Data,Value\n"; // CSV header
-    csvContent += `Start Time,${startTime ? startTime.toISOString() : ''}\n`;
-    csvContent += `End Time,${endTime.toISOString()}\n`;
-    csvContent += `Date,${endTime.toLocaleDateString()}\n`;
-    csvContent += `Pokemon,${currentPokemon}\n`;
-    csvContent += `Method,${methodSelect.value}\n`;
-    csvContent += `Shiny Charm,${shinyCharmCheckbox.checked ? 'Yes' : 'No'}\n`;
-    csvContent += `Encounters,${encounterCount}\n`;
-    csvContent += `Notes,"${huntNotesInput.value.replace(/"/g, '""')}"\n`; // Escape double quotes
+    shinyCharmCheckbox.addEventListener('change', () => {
+        hasShinyCharm = shinyCharmCheckbox.checked;
+        updateShinyOddsDisplay();
+        saveProgress();
+    });
 
-    // Add encountered Pokemon counts
-    csvContent += "\nEncountered Pokemon,Count\n";
-    for (const pokemon in encounteredPokemonCounts) {
-        csvContent += `${pokemon},${encounteredPokemonCounts[pokemon]}\n`;
+    function saveProgress() {
+        localStorage.setItem('encounterCount', encounterCount);
+        localStorage.setItem('selectedPokemon', currentPokemon);
+        localStorage.setItem('huntingMethod', huntingMethod);
+        localStorage.setItem('hasShinyCharm', hasShinyCharm);
+        if (startTime) {
+            localStorage.setItem('startTime', startTime.toISOString());
+        } else {
+            localStorage.removeItem('startTime');
+        }
+        localStorage.setItem('encounteredPokemonCounts', JSON.stringify(encounteredPokemonCounts));
+        saveCompletedHunts(); // Save the Pokedex data as well
     }
 
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const filename = `shiny_hunt_${currentPokemon.replace(/ /g, '_')}_${endTime.toISOString().replace(/:/g, '-')}.csv`;
+    function loadProgress() {
+        const savedCount = localStorage.getItem('encounterCount');
+        if (savedCount !== null) {
+            encounterCount = parseInt(savedCount, 10);
+        }
+        const savedPokemon = localStorage.getItem('selectedPokemon');
+        if (savedPokemon !== null && savedPokemon !== 'none') {
+            currentPokemon = savedPokemon;
+            pokemonSelect.value = savedPokemon;
+        } else {
+            currentPokemon = '';
+            pokemonSelect.value = 'none';
+        }
+        const savedMethod = localStorage.getItem('huntingMethod');
+        if (savedMethod !== null) {
+            huntingMethod = savedMethod;
+            methodSelect.value = savedMethod;
+        }
+        const savedShinyCharm = localStorage.getItem('hasShinyCharm');
+        if (savedShinyCharm !== null) {
+            hasShinyCharm = savedShinyCharm === 'true';
+            shinyCharmCheckbox.checked = hasShinyCharm;
+        }
+        const savedStartTime = localStorage.getItem('startTime');
+        if (savedStartTime) {
+            startTime = new Date(savedStartTime);
+        }
+        const savedEncounterCounts = localStorage.getItem('encounteredPokemonCounts');
+        if (savedEncounterCounts) {
+            encounteredPokemonCounts = JSON.parse(savedEncounterCounts);
+        }
+        updateShinyOddsDisplay();
+        updateCountDisplay();
+        displayPokedex(); // Load and display the Pokedex on page load
+    }
 
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    function finishHuntAndDownload() {
+        if (currentPokemon === 'none' || !currentPokemon) {
+            alert('Please select a Pokémon to finish the hunt.');
+            return;
+        }
 
-    alert('Hunt data downloaded as a CSV file.');
+        const endTime = new Date();
+        let csvContent = "Data,Value\n"; // CSV header
+        csvContent += `Start Time,${startTime ? startTime.toISOString() : ''}\n`;
+        csvContent += `End Time,${endTime.toISOString()}\n`;
+        csvContent += `Date,${endTime.toLocaleDateString()}\n`;
+        csvContent += `Pokemon,${currentPokemon}\n`;
+        csvContent += `Method,${methodSelect.value}\n`;
+        csvContent += `Shiny Charm,${shinyCharmCheckbox.checked ? 'Yes' : 'No'}\n`;
+        csvContent += `Encounters,${encounterCount}\n`;
+        csvContent += `Notes,"${huntNotesInput.value.replace(/"/g, '""')}"\n`; // Escape double quotes
 
-    encounterCount = 0;
-    currentPokemon = '';
-    pokemonSelect.value = 'none';
-    methodSelect.value = 'encounters';
-    shinyCharmCheckbox.checked = false;
-    startTime = null;
-    encounteredPokemonCounts = {};
-    updateCountDisplay();
-    saveProgress();
+        // Add encountered Pokemon counts
+        csvContent += "\nEncountered Pokemon,Count\n";
+        for (const pokemon in encounteredPokemonCounts) {
+            csvContent += `${pokemon},${encounteredPokemonCounts[pokemon]}\n`;
+        }
 
-    // Add this line to clear the textarea
-    huntNotesInput.value = '';
-}
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const filename = `shiny_hunt_${currentPokemon.replace(/ /g, '_')}_${endTime.toISOString().replace(/:/g, '-')}.csv`;
 
-if (finishHuntButton) {
-    finishHuntButton.addEventListener('click', finishHuntAndDownload);
-} else {
-    console.error("Finish hunt button not found in the DOM.");
-}
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
 
-loadProgress();
+        alert('Hunt data downloaded as a CSV file.');
+
+        if (!completedHunts.includes(currentPokemon)) {
+            completedHunts.push(currentPokemon);
+            saveCompletedHunts();
+            displayPokedex(); // Update the display
+        } else {
+            alert(`You have already finished a hunt for ${currentPokemon.charAt(0).toUpperCase() + currentPokemon.slice(1)}!`);
+        }
+
+        encounterCount = 0;
+        currentPokemon = '';
+        pokemonSelect.value = 'none';
+        methodSelect.value = 'encounters';
+        shinyCharmCheckbox.checked = false;
+        startTime = null;
+        encounteredPokemonCounts = {};
+        updateCountDisplay();
+        saveProgress();
+
+        // Add this line to clear the textarea
+        huntNotesInput.value = '';
+    }
+
+    if (finishHuntButton) {
+        finishHuntButton.addEventListener('click', finishHuntAndDownload);
+    } else {
+        console.error("Finish hunt button not found in the DOM.");
+    }
+    // Call displayPokedex on load to show any previously completed hunts
+    displayPokedex();
+    loadProgress();
+
+    window.scrollTo(0, 0); // Force scroll to top on load
 });
