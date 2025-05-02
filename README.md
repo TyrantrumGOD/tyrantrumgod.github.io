@@ -32,7 +32,7 @@ A simple web-based tool to track your shiny Pokémon encounters.
 6.  **Use the "Decrement" button** if you miscounted.
 7.  **Use the "Reset" button** to start a new hunt for the same Pokémon or a different one.
 8.  **Add any relevant notes** in the "Add any notes about this hunt" textarea.
-9.  **Once you find your shiny Pokémon**, click the "Finish Hunt and Download Data" button to save a record of your hunt as a `.json` file.
+9.  **Once you find your shiny Pokémon**, click the "Finish Hunt" button to save a record of your hunt.
 
 ## Files Included
 
