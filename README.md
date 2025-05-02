@@ -10,16 +10,7 @@ A simple web-based tool to track your shiny Pokémon encounters.
 * **Shiny Odds Display:** Dynamically displays the shiny encounter odds based on the selected method and whether you have the Shiny Charm.
 * **Encounter Counter:** Simple increment, decrement, and reset buttons to keep track of your encounter count.
 * **Pokémon Image:** Displays an image of the selected Pokémon.
-* **Notes:** A textarea to add any notes or details about your current hunt.
-* **Download Hunt Data:** A button to download the details of your completed hunt as a JSON file. This includes:
-    * Start time of the hunt (if tracked).
-    * End time of the hunt.
-    * Date of the hunt.
-    * The Pokémon being hunted.
-    * The hunting method used.
-    * Whether the Shiny Charm was active.
-    * The final encounter count.
-    * Any notes you added.
+* **Notes:** A text area to add any notes or details about your current hunt.
 * **Local Storage:** Saves your current progress (encounter count, selected Pokémon, method, Shiny Charm status) in your browser's local storage, so your hunt persists across page reloads.
 
 ## How to Use
