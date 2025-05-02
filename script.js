@@ -32,6 +32,91 @@ document.addEventListener('DOMContentLoaded', function() {
     let hasShinyCharm = false;
     let startTime = null;
     let encounteredPokemonCounts = {};
+    // Assuming 'fullPokedex' is defined elsewhere in your script
+    let fullPokedex = {};
+
+    // New script for custom select
+    const customSelect = document.querySelector('.custom-select-wrapper');
+    const selectTrigger = customSelect ? customSelect.querySelector('.custom-select-trigger') : null;
+    const customOptions = customSelect ? customSelect.querySelector('.custom-options') : null;
+    let customOptionList = customOptions ? customOptions.querySelectorAll('.custom-option') : [];
+    const realSelect = document.getElementById('pokemon-select');
+
+    function populateCustomOptions() {
+        if (realSelect && customOptions && fullPokedex && selectTrigger) {
+            // Clear existing options
+            customOptions.innerHTML = '';
+            realSelect.innerHTML = '<option value="none">None</option>'; // Keep the default
+            selectTrigger.querySelector('span').textContent = 'Select a Pokémon'; // Reset trigger text
+
+            for (const pokemonName in fullPokedex) {
+                const option = document.createElement('div');
+                option.classList.add('custom-option');
+                option.textContent = pokemonName;
+                option.setAttribute('data-value', pokemonName);
+                customOptions.appendChild(option);
+
+                const realOption = document.createElement('option');
+                realOption.value = pokemonName;
+                realOption.textContent = pokemonName;
+                realSelect.appendChild(realOption);
+            }
+
+            // Re-select custom option elements after populating
+            customOptionList = customOptions.querySelectorAll('.custom-option');
+            customOptionList.forEach(option => {
+                option.addEventListener('click', function() {
+                    const value = this.getAttribute('data-value');
+                    const text = this.textContent;
+                    if (selectTrigger && realSelect) {
+                        selectTrigger.querySelector('span').textContent = text;
+                        realSelect.value = value;
+                        realSelect.dispatchEvent(new Event('change'));
+                        if (customOptions) {
+                            customOptions.style.display = 'none';
+                        }
+                        currentPokemon = value;
+                        updateCountDisplay();
+                        saveProgress(); // Save progress on Pokémon selection
+                    }
+                });
+            });
+
+            // Load previously selected Pokémon
+            const savedPokemon = localStorage.getItem('selectedPokemon');
+            if (savedPokemon && savedPokemon !== 'none' && realSelect) {
+                realSelect.value = savedPokemon;
+                if (selectTrigger && selectTrigger.querySelector('span')) {
+                    const selectedOption = customOptions.querySelector(`.custom-option[data-value="${savedPokemon}"]`);
+                    if (selectedOption) {
+                        selectTrigger.querySelector('span').textContent = selectedOption.textContent;
+                    } else {
+                        selectTrigger.querySelector('span').textContent = savedPokemon.charAt(0).toUpperCase() + savedPokemon.slice(1);
+                    }
+                    currentPokemon = savedPokemon;
+                    updateCountDisplay();
+                }
+            }
+        }
+    }
+
+    if (selectTrigger) {
+        selectTrigger.addEventListener('click', () => {
+            if (customOptions) {
+                customOptions.style.display = customOptions.style.display === 'block' ? 'none' : 'block';
+            }
+        });
+    }
+
+    // Close the dropdown if the user clicks outside
+    document.addEventListener('click', (event) => {
+        if (customSelect && !customSelect.contains(event.target)) {
+            if (customOptions) {
+                customOptions.style.display = 'none';
+            }
+        }
+    });
+    // End of new script
 
     if (tyrantrumLeftImage) {
         tyrantrumLeftImage.src = tyrantrumImageUrl;
@@ -61,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const entryDiv = document.createElement('div');
             entryDiv.classList.add('pokedex-entry');
             const pokemonId = getPokemonId(pokemonName); // Reuse your function
-            const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
+            const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemonId}.png`;
             const img = document.createElement('img');
             img.src = imageUrl;
             img.alt = pokemonName;
@@ -146,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentPokemon) {
             titleElement.textContent = `Shiny Hunt Tracker - Hunting: ${currentPokemon.charAt(0).toUpperCase() + currentPokemon.slice(1)}`;
             let pokemonId = getPokemonId(currentPokemon);
-            let imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
+            let imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemonId}.png`;
             pokemonImage.src = imageUrl;
             pokemonImage.style.display = 'block';
             updateShinyOddsDisplay();
@@ -1316,185 +1401,104 @@ document.addEventListener('DOMContentLoaded', function() {
         case 'basculin-white-striped': return 10247;
         case 'basculegion-female': return 10248;
         case 'enamorus-therian': return 10249
-        default: return 0;
-        }
+        default: return 0; // Default return if not found
     }
+}
 
-    pokemonSelect.addEventListener('change', () => {
-        currentPokemon = pokemonSelect.value;
-        updateCountDisplay();
-        if (currentPokemon !== 'none' && startTime === null) {
-            startTime = new Date();
-        }
-    });
-
-    incrementButton.addEventListener('click', () => {
-        const selectedPokemon = pokemonSelect.value;
-        if (selectedPokemon !== 'none') {
-            encounteredPokemonCounts[selectedPokemon] = (encounteredPokemonCounts[selectedPokemon] || 0) + 1;
-            encounterCount++;
-            updateCountDisplay();
-            saveProgress();
-            if (startTime === null) {
-                startTime = new Date();
-            }
-        } else {
-            alert('Please select a Pokémon before incrementing.');
-        }
-    });
-
-    decrementButton.addEventListener('click', () => {
-        if (encounterCount > 0) {
-            encounterCount--;
-            updateCountDisplay();
-            saveProgress();
-        }
-    });
-
-    resetButton.addEventListener('click', () => {
-        encounterCount = 0;
-        currentPokemon = '';
-        pokemonSelect.value = 'none';
-        huntingMethod = 'encounters';
-        methodSelect.value = 'encounters';
-        hasShinyCharm = false;
-        shinyCharmCheckbox.checked = false;
-        updateShinyOddsDisplay();
-        updateCountDisplay();
-        saveProgress();
-        startTime = null;
-        encounteredPokemonCounts = {};
-    });
-
-    methodSelect.addEventListener('change', () => {
-        huntingMethod = methodSelect.value;
-        updateShinyOddsDisplay();
-        saveProgress();
-    });
-
-    shinyCharmCheckbox.addEventListener('change', () => {
-        hasShinyCharm = shinyCharmCheckbox.checked;
-        updateShinyOddsDisplay();
-        saveProgress();
-    });
-
-    function saveProgress() {
-        localStorage.setItem('encounterCount', encounterCount);
-        localStorage.setItem('selectedPokemon', currentPokemon);
-        localStorage.setItem('huntingMethod', huntingMethod);
-        localStorage.setItem('hasShinyCharm', hasShinyCharm);
-        if (startTime) {
-            localStorage.setItem('startTime', startTime.toISOString());
-        } else {
-            localStorage.removeItem('startTime');
-        }
-        localStorage.setItem('encounteredPokemonCounts', JSON.stringify(encounteredPokemonCounts));
-        saveCompletedHunts(); // Save the Pokedex data as well
-    }
-
-    function loadProgress() {
-        const savedCount = localStorage.getItem('encounterCount');
-        if (savedCount !== null) {
-            encounterCount = parseInt(savedCount, 10);
-        }
-        const savedPokemon = localStorage.getItem('selectedPokemon');
-        if (savedPokemon !== null && savedPokemon !== 'none') {
-            currentPokemon = savedPokemon;
-            pokemonSelect.value = savedPokemon;
-        } else {
-            currentPokemon = '';
-            pokemonSelect.value = 'none';
-        }
-        const savedMethod = localStorage.getItem('huntingMethod');
-        if (savedMethod !== null) {
-            huntingMethod = savedMethod;
-            methodSelect.value = savedMethod;
-        }
-        const savedShinyCharm = localStorage.getItem('hasShinyCharm');
-        if (savedShinyCharm !== null) {
-            hasShinyCharm = savedShinyCharm === 'true';
-            shinyCharmCheckbox.checked = hasShinyCharm;
-        }
-        const savedStartTime = localStorage.getItem('startTime');
-        if (savedStartTime) {
-            startTime = new Date(savedStartTime);
-        }
-        const savedEncounterCounts = localStorage.getItem('encounteredPokemonCounts');
-        if (savedEncounterCounts) {
-            encounteredPokemonCounts = JSON.parse(savedEncounterCounts);
-        }
-        updateShinyOddsDisplay();
-        updateCountDisplay();
-        displayPokedex(); // Load and display the Pokedex on page load
-    }
-
-    function finishHuntAndDownload() {
-        if (currentPokemon === 'none' || !currentPokemon) {
-            alert('Please select a Pokémon to finish the hunt.');
-            return;
-        }
-
-        const endTime = new Date();
-        let csvContent = "Data,Value\n"; // CSV header
-        csvContent += `Start Time,${startTime ? startTime.toISOString() : ''}\n`;
-        csvContent += `End Time,${endTime.toISOString()}\n`;
-        csvContent += `Date,${endTime.toLocaleDateString()}\n`;
-        csvContent += `Pokemon,${currentPokemon}\n`;
-        csvContent += `Method,${methodSelect.value}\n`;
-        csvContent += `Shiny Charm,${shinyCharmCheckbox.checked ? 'Yes' : 'No'}\n`;
-        csvContent += `Encounters,${encounterCount}\n`;
-        csvContent += `Notes,"${huntNotesInput.value.replace(/"/g, '""')}"\n`; // Escape double quotes
-
-        // Add encountered Pokemon counts
-        csvContent += "\nEncountered Pokemon,Count\n";
-        for (const pokemon in encounteredPokemonCounts) {
-            csvContent += `${pokemon},${encounteredPokemonCounts[pokemon]}\n`;
-        }
-
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-        const url = URL.createObjectURL(blob);
-        const filename = `shiny_hunt_${currentPokemon.replace(/ /g, '_')}_${endTime.toISOString().replace(/:/g, '-')}.csv`;
-
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-
-        alert('Hunt data downloaded as a CSV file.');
-
-        if (!completedHunts.includes(currentPokemon)) {
-            completedHunts.push(currentPokemon);
-            saveCompletedHunts();
-            displayPokedex(); // Update the display
-        } else {
-            alert(`You have already finished a hunt for ${currentPokemon.charAt(0).toUpperCase() + currentPokemon.slice(1)}!`);
-        }
-
-        encounterCount = 0;
-        currentPokemon = '';
-        pokemonSelect.value = 'none';
-        methodSelect.value = 'encounters';
-        shinyCharmCheckbox.checked = false;
-        startTime = null;
-        encounteredPokemonCounts = {};
-        updateCountDisplay();
-        saveProgress();
-
-        // Add this line to clear the textarea
-        huntNotesInput.value = '';
-    }
-
-    if (finishHuntButton) {
-        finishHuntButton.addEventListener('click', finishHuntAndDownload);
+function saveProgress() {
+    localStorage.setItem('encounterCount', encounterCount);
+    localStorage.setItem('selectedPokemon', realSelect.value); // Save the value from the real select
+    localStorage.setItem('huntingMethod', huntingMethod);
+    localStorage.setItem('hasShinyCharm', hasShinyCharm);
+    if (startTime) {
+        localStorage.setItem('startTime', startTime.toISOString());
     } else {
-        console.error("Finish hunt button not found in the DOM.");
+        localStorage.removeItem('startTime');
     }
-    // Call displayPokedex on load to show any previously completed hunts
-    displayPokedex();
-    loadProgress();
+    localStorage.setItem('encounteredPokemonCounts', JSON.stringify(encounteredPokemonCounts));
+    saveCompletedHunts(); // Save the Pokedex data as well
+}
 
-    window.scrollTo(0, 0); // Force scroll to top on load
+function loadProgress() {
+    const savedCount = localStorage.getItem('encounterCount');
+    if (savedCount !== null) {
+        encounterCount = parseInt(savedCount, 10);
+    }
+    const savedPokemon = localStorage.getItem('selectedPokemon');
+    // Loading of selected pokemon is now handled in populateCustomOptions
+    const savedMethod = localStorage.getItem('huntingMethod');
+    if (savedMethod !== null) {
+        huntingMethod = savedMethod;
+        methodSelect.value = savedMethod;
+    }
+    const savedShinyCharm = localStorage.getItem('hasShinyCharm');
+    if (savedShinyCharm !== null) {
+        hasShinyCharm = savedShinyCharm === 'true';
+        shinyCharmCheckbox.checked = hasShinyCharm;
+    }
+    const savedStartTime = localStorage.getItem('startTime');
+    if (savedStartTime) {
+        startTime = new Date(savedStartTime);
+    }
+    const savedEncounterCounts = localStorage.getItem('encounteredPokemonCounts');
+    if (savedEncounterCounts) {
+        encounteredPokemonCounts = JSON.parse(savedEncounterCounts);
+    }
+    updateShinyOddsDisplay();
+    updateCountDisplay();
+    displayPokedex(); // Load and display the Pokedex on page load
+}
+
+function finishHuntAndDownload() {
+    if (currentPokemon === 'none' || !currentPokemon) {
+        alert('Please select a Pokémon to finish the hunt.');
+        return;
+    }
+
+    const endTime = new Date();
+
+    alert('Hunt finished! Your progress has been saved.');
+
+    if (!completedHunts.includes(currentPokemon)) {
+        completedHunts.push(currentPokemon);
+        saveCompletedHunts();
+        displayPokedex(); // Update the display
+    } else {
+        alert(`You have already finished a hunt for ${currentPokemon.charAt(0).toUpperCase() + currentPokemon.slice(1)}!`);
+    }
+
+    encounterCount = 0;
+    currentPokemon = '';
+    if (realSelect) realSelect.value = 'none';
+    if (selectTrigger) selectTrigger.querySelector('span').textContent = 'Select a Pokémon';
+    methodSelect.value = 'encounters';
+    shinyCharmCheckbox.checked = false;
+    startTime = null;
+    encounteredPokemonCounts = {};
+    updateCountDisplay();
+    saveProgress();
+
+    // Keep this line to clear the textarea
+    huntNotesInput.value = '';
+}
+
+if (finishHuntButton) {
+    finishHuntButton.addEventListener('click', finishHuntAndDownload);
+} else {
+    console.error("Finish hunt button not found in the DOM.");
+}
+
+// Call populateCustomOptions after the DOM is loaded
+populateCustomOptions();
+displayPokedex();
+loadProgress();
+
+window.scrollTo(0, 0); // Force scroll to top on load
+
+    // Call populateCustomOptions to populate the custom dropdown
+    if (fullPokedex.length > 0) {
+        populateCustomOptions();
+    } else {
+        console.warn("fullPokedex is empty or not yet loaded. Ensure it's populated before populateCustomOptions is called.");
+    }
 });
