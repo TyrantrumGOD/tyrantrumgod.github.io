@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const BUILD_NUMBER = 'v1.0.0-beta.3'; // Ensure this is defined
+    const BUILD_NUMBER = 'v1.0.2'; // Ensure this is defined
 
     // Create and add the build number header
     const buildHeader = document.createElement('div');
@@ -1334,7 +1334,7 @@ document.addEventListener('DOMContentLoaded', function() {
         case 'farfetchd-galar': return 10166;
         case 'weezing-galar': return 10167;
         case 'mr-mime-galar': return 10168;
-        case 'arcticuno-galar': return 10169;
+        case 'articuno-galar': return 10169;
         case 'zapdos-galar': return 10170;
         case 'moltres-galar': return 10171;
         case 'slowking-galar': return 10172;
