@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const BUILD_NUMBER = 'v1.0.2'; // Ensure this is defined
+    const BUILD_NUMBER = 'v1.1.0'; // Ensure this is defined
 
     // Create and add the build number header
     const buildHeader = document.createElement('div');
@@ -661,7 +661,7 @@ document.addEventListener('DOMContentLoaded', function() {
         case 'burmy': return 412;
         case 'burmy-sandy': return '412-sandy';
         case 'burmy-trash': return '412-trash';
-        case 'wormadam-plant': return 413;
+        case 'wormadam': return 413;
         case 'mothim': return 414;
         case 'combee': return 415;
         case 'vespiquen': return 416;
@@ -737,7 +737,7 @@ document.addEventListener('DOMContentLoaded', function() {
         case 'palkia': return 484;
         case 'heatran': return 485;
         case 'regigigas': return 486;
-        case 'giratina-altered': return 487;
+        case 'giratina': return 487;
         case 'cresselia': return 488;
         case 'phione': return 489;
         case 'manaphy': return 490;
@@ -780,21 +780,43 @@ document.addEventListener('DOMContentLoaded', function() {
         case 'gigalith': return 526;
         case 'woobat': return 527;
         case 'swoobat': return 528;
-        case 'sandile': return 529;
-        case 'krokorok': return 530;
-        case 'krookodile': return 531;
-        case 'darumaka': return 532;
-        case 'darmanitan': return 533;
-        case 'maractus': return 534;
-        case 'dwebble': return 535;
-        case 'crustle': return 536;
-        case 'scraggy': return 537;
-        case 'scrafty': return 538;
-        case 'sigilyph': return 539;
-        case 'yamask': return 540;
-        case 'cofagrigus': return 541;
-        case 'tirtouga': return 548;
-        case 'carracosta': return 549;
+        case 'drilbur': return 529;
+        case 'excadrill': return 530;
+        case 'audino': return 531;
+        case 'timburr': return 532;
+        case 'gurdurr': return 533;
+        case 'conkeldurr': return 534;
+        case 'tympole': return 535;
+        case 'palpitoad': return 536;
+        case 'seismitoad': return 537;
+        case 'throh': return 538;
+        case 'sawk': return 539;
+        case 'sewaddle': return 540;
+        case 'swadloon': return 541;
+        case 'leavanny': return 542;
+        case 'venipede': return 543;
+        case 'whirlipede': return 544;
+        case 'scolipede': return 545;
+        case 'cottonee': return 546;
+        case 'whimsicott': return 547;
+        case 'petilil': return 548;
+        case 'lilligant': return 549;
+        case 'basculin': return 550;
+        case 'sandile': return 551;
+        case 'krokorok': return 552;
+        case 'krookodile': return 553;
+        case 'darumaka': return 554;
+        case 'darmanitan': return 555;
+        case 'maractus': return 556;
+        case 'dwebble': return 557;
+        case 'crustle': return 558;
+        case 'scraggy': return 559;
+        case 'scrafty': return 560;
+        case 'sigilyph': return 561;
+        case 'yamask': return 562;
+        case 'cofagrigus': return 563;
+        case 'tirtouga': return 564;
+        case 'carracosta': return 565;
         case 'archen': return 566;
         case 'archeops': return 567;
         case 'trubbish': return 568;
@@ -1155,7 +1177,7 @@ document.addEventListener('DOMContentLoaded', function() {
         case 'stonjourner': return 874;
         case 'eiscue': return 875;
         case 'indeedee': return 876;
-        case 'indeedeee-female': return 10186;
+        case 'indeedeee-female': return 876;
         case 'morpeko': return 877;
         case 'cufant': return 878;
         case 'copperajah': return 879;
@@ -1206,7 +1228,7 @@ document.addEventListener('DOMContentLoaded', function() {
         case 'pawmo': return 922;
         case 'pawmot': return 923;
         case 'tandemaus': return 924;
-        case 'maushold-family-of-four': return 925;
+        case 'maushold': return 925;
         case 'fidough': return 926;
         case 'dachsbun': return 927;
         case 'smoliv': return 928;
