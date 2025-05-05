@@ -7,18 +7,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="build-number-header">Build: v1.0.2</div>
+    <div id="build-number-header">Build: v1.0.3</div>
     <div id="main-content">
         <div id="changelog-container">
             <h2>Changelog</h2>
+            <p><strong>[05.05.2025] - Version 1.0.3</strong></p>
+            <ul>
+                <li>Added the rest pokemon + their regional forms</li>
+            </ul>
             <p><strong>[04.05.2025] - Version 1.0.2</strong></p>
             <ul>
                 <li>Added all Kanto pokemon + their regional forms</li>
                 <li>Added section for Shinies that can not be hunted legally</li>
-            </ul>
-            <p><strong>[02.05.2025] - Version 1.0.1</strong></p>
-            <ul>
-                <li>Made it so shiny version appears on both counter and Pokedex under.</li>
             </ul>
         </div>
         <div class="tracker-container">
@@ -1328,7 +1328,7 @@
             { name: 'parasect', id: 47, region: 'kanto' },
             { name: 'venonat', id: 48, region: 'kanto' },
             { name: 'venomoth', id: 49, region: 'kanto' },
-            { name: 'diglett', id: 50, region:' kanto'},
+            { name: 'diglett', id: 50, region:'kanto'},
             { name: 'diglett-alola',id: 10105,region:'alola'},
             { name: 'dugtrio', id: 51, region: 'kanto' },
             { name: 'dugtrio-alola', id: 10106, region: 'alola' },
@@ -1345,7 +1345,7 @@
             { name: 'growlithe-hisui', id: 10229, region: 'hisui' },
             { name: 'arcanine', id: 59, region: 'kanto' },
             { name: 'arcanine-hisui', id: 10230, region: 'hisui' },
-            { name: 'poliwag', id: 60, region:' kanto'},
+            { name: 'poliwag', id: 60, region:'kanto'},
             { name: 'poliwhirl',id: 61,region:'kanto'},
             { name: 'poliwrath',id: 62,region:'kanto'},
             { name: 'abra', id: 63, region:'kanto'},
@@ -1375,7 +1375,7 @@
             { name: 'slowbro-galar', id: 10165, region: 'galar' },
             { name: 'magnemite', id: 81, region: 'kanto' },
             { name: 'magneton', id: 82, region: 'kanto' },
-            { name: 'farfetchd', id: 83, region:' kanto'},
+            { name: 'farfetchd', id: 83, region:'kanto'},
             { name: 'farfetchd-galar',id: 10166,region:'galar'},
             { name: 'doduo',id:'84',region:'kanto'},
             { name: 'dodrio',id:'85',region:'kanto'},
@@ -1449,11 +1449,11 @@
             { name: 'aerodactyl', id: 142 , region : 'kanto'},
             { name: 'snorlax', id: 143 , region : 'kanto'},
             { name: 'articuno', id: 144 , region : 'kanto'},
-            { name: 'articuno-galarian', id: 10169 ,region :'galarian'},
+            { name: 'articuno-galarian', id: 10169 ,region :'galar'},
             { name: 'zapdos', id: 145 , region : 'kanto'},
-            { name: 'zapdos-galarian', id: 10170 ,region :'galarian'},
+            { name: 'zapdos-galarian', id: 10170 ,region :'galar'},
             { name: 'moltres', id: 146 , region : "kanto"},
-            { name: 'moltres-galarian', id: 10171 ,region :'galarian'},
+            { name: 'moltres-galarian', id: 10171 ,region :'galar'},
             { name: 'dratini', id: 147, region:'kanto'},
             { name: 'dragonair', id: 148, region:'kanto'},
             { name: 'dragonite', id: 149, region:'kanto'},
@@ -1462,31 +1462,900 @@
             { name: 'chikorita', id: 152, region: 'johto' },
             { name: 'bayleef', id: 153, region: 'johto' },
             { name: 'meganium', id: 154, region: 'johto' },
+            { name: 'cyndaquil', id: 155, region: 'johto' },
+            { name: 'quilava', id: 156, region: 'johto' },
+            { name: 'typhlosion', id: 157, region: 'johto' },
+            { name: 'typhlosion-hisui',id: 10233, region: 'hisui' },
+            { name: 'totodile', id: 158, region: 'johto' },
+            { name: 'croconaw', id: 159, region: 'johto' },
+            { name: 'feraligatr', id: 160, region: 'johto' },
+            { name: 'sentret', id: 161, region: 'johto' },
+            { name: 'furret', id: 162, region: 'johto' },
+            { name: 'hoothoot', id: 163, region: 'johto' },
+            { name: 'noctowl', id: 164, region: 'johto' },
+            { name: 'ledyba', id: 165, region:'johto'},
+            { name: 'ledian', id: 166,region:'johto'},
+            { name:'spinarak',id: 167,region:'johto'},
+            { name:'ariados',id: 168,region:'johto'},
+            { name:'crobat',id: 169,region:'johto'},
+            { name:'chinchou',id: 170,region:'johto'},
+            { name:'lanturn',id: 171,region:'johto'},
+            { name:'pichu',id: 172,region:'johto'},
+            { name:'cleffa',id: 173,region:'johto'},
+            { name:'igglybuff',id: 174,region:'johto'},
+            { name:'togepi',id: 175,region:'johto'},
+            { name:'togetic',id: 176,region:'johto'},
+            { name:'natu',id: 177,region:'johto'},
+            { name:'xatu',id: 178,region:'johto'},
+            { name:'mareep',id: 179, region:'johto'},
+            { name:'flaaffy', id: 180, region: 'johto'},
+            { name:'ampharos',id: 181,region:'johto'},
+            { name:'bellossom',id: 182,region:'johto'},
+            { name:'marill',id: 183,region:'johto'},
+            { name:'azumarill',id: 184,region:'johto'},
+            { name:'sudowoodo',id: 185,region:'johto'},
+            { name:'politoed',id: 186,region:'johto'},
+            { name:'hoppip',id: 187,region:'johto'},
+            { name:'skiploom',id: 188,region:'johto'},
+            { name:'jumpluff',id: 189,region:'johto'},
+            { name:'aipom',id: 190,region:'johto'},
+            { name:'sunkern',id: 191,region:'johto'},
+            { name:'sunflora',id: 192,region:'johto'},
+            { name:'yanma',id: 193,region:'johto'},
+            { name:'wooper', id: 194, region: 'johto' },
+            { name:'wooper-paldean', id: 10253, region: 'paldea' },
+            { name:'quagsire', id: 195, region: 'johto' },
+            { name:'espeon', id: 196, region: 'johto' },
+            { name:'umbreon', id: 197, region: 'johto' },
+            { name:'murkrow', id: 198, region: 'johto' },
+            { name:'slowking', id: 199, region: 'johto' },
+            { name:'slowking-galarian', id: 10172, region : 'galar' },
+            { name:'misdreavus', id: 200, region: 'johto'},
+            { name:'unown-a', id: 201, region: 'johto'},
+            { name:'wobbuffet', id: 202, region: 'johto'},
+            { name:'girafarig', id: 203, region: 'johto'},
+            { name:'pineco' , id: 204 , region : 'johto'},
+            { name:'forretress', id: 205, region: 'johto'},
+            { name:'dunsparce', id: 206, region: 'johto'},
+            { name:'gligar', id: 207, region: 'johto'},
+            { name:'steelix', id: 208, region: 'johto'},
+            { name:'snubbull', id: 209, region: 'johto'},
+            { name:'granbull', id: 210, region: 'johto'},
+            { name:'qwilfish', id: 211, region:'johto'},
+            { name:'qwilfish-hisui', id: 10234, region: 'hisui'},
+            { name:'scizor',id :212 ,region:'johto'},
+            { name:'shuckle',id :213 ,region:'johto'},
+            { name:'heracross',id :214 ,region:'johto'},
+            { name:'sneasel',id :215 ,region:'johto'},
+            { name:'sneasel-hisui', id: 10235, region: 'hisui'},
+            { name:'teddiursa',id :216 ,region:'johto'},
+            { name:'ursaring',id :217 ,region:'johto'},
+            { name:'slugma',id :218 ,region:'johto'},
+            { name:'magcargo',id :219 ,region:'johto'},
+            { name:'swinub',id :220 ,region:'johto'},
+            { name:'piloswine',id :221 ,region:'johto'},
+            { name:'corsola',id :222 ,region:'johto'},
+            { name:'corsola-galarian', id: 10173, region: 'galar'},
+            { name:'remoraid',id :223 ,region:'johto'},
+            { name:'octillery',id :224 ,region:'johto'},
+            { name:'delibird',id :225 ,region:'johto'},
+            { name:'mantine',id :226 ,region:'johto'},
+            { name:'skarmory',id :227 ,region:'johto'},
+            { name:'houndour',id :228 ,region:'johto'},
+            { name:'houndoom',id :229 ,region:'johto'},
+            { name:'kingdra', id: 230, region: 'johto' },
+            { name:'phanpy', id: 231, region :'johto' },
+            { name:'donphan', id: 232, region :'johto' },
+            { name:'porygon2', id: 233, region: 'johto' },
+            { name:'stantler', id: 234, region: 'johto' },
+            { name:'smeargle', id: 235, region: 'johto' },
+            { name:'tyrogue', id: 236, region: 'johto' },
+            { name:'hitmontop', id: 237, region: 'johto' },
+            { name:'smoochum', id: 238, region: 'johto' },
+            { name:'elekid', id: 239, region: 'johto' },
+            { name:'magby', id: 240, region: 'johto' },
+            { name:'miltank', id: 241, region:'johto'},
+            { name:'blissey',id :242 ,region:'johto'},
+            { name:'raikou',id :243 ,region:'johto'},
+            { name:'entei',id :244 ,region:'johto'},
+            { name:'suicune',id :245 ,region:'johto'},
+            { name:'larvitar',id :246 ,region:'johto'},
+            { name:'pupitar',id :247 ,region:'johto'},
+            { name:'tyranitar',id :248 ,region:'johto'},
+            { name:'lugia',id :249 ,region:'johto'},
+            { name:'ho-oh',id :250 ,region:'johto'},
+            { name:'celebi',id :251 ,region:'johto'},
             { name: 'treecko', id: 252, region: 'hoenn' },
             { name: 'grovyle', id: 253, region: 'hoenn' },
             { name: 'sceptile', id: 254, region: 'hoenn' },
+            { name: 'torchic', id: 255, region: 'hoenn' },
+            { name: 'combusken', id: 256, region: 'hoenn' },
+            { name: 'blaziken', id: 257, region: 'hoenn' },
+            { name: 'mudkip', id: 258, region: 'hoenn' },
+            { name: 'marshtomp', id: 259, region: 'hoenn' },
+            { name: 'swampert', id: 260, region: 'hoenn' },
+            { name: 'poochyena', id: 261, region: 'hoenn' },
+            { name: 'mightyena', id: 262, region: 'hoenn' },
+            { name: 'zigzagoon', id: 263, region:'hoenn'},
+            { name:'zigzagoon-galarian',id :10174 ,region:'galar'},
+            { name:'linoone',id :264 ,region:'hoenn'},
+            { name:'linoone-galarian',id :10175 ,region:'galar'},
+            { name:'wurmple',id :265 ,region:'hoenn'},
+            { name:'silcoon',id :266 ,region:'hoenn'},
+            { name:'beautifly',id :267 ,region:'hoenn'},
+            { name:'cascoon',id :268 ,region:'hoenn'},
+            { name:'dustox',id :269 ,region:'hoenn'},
+            { name:'lotad',id :270 ,region:'hoenn'},
+            { name:'lombre',id :271 ,region:'hoenn'},
+            { name:'ludicolo',id :272 ,region:'hoenn'},
+            { name:'seedot',id :273 ,region:'hoenn'},
+            { name:'nuzleaf',id :274 ,region:'hoenn'},
+            { name:'shiftry',id :275 ,region:'hoenn'},
+            { name:'taillow',id :276 ,region:'hoenn'},
+            { name:'swellow',id :277 ,region:'hoenn'},
+            { name:'wingull',id :278 ,region:'hoenn'},
+            { name:'pelipper',id :279 ,region:'hoenn'},
+            { name: 'ralts', id: 280, region: 'hoenn' },
+            { name: 'kirlia', id: 281, region: 'hoenn' },
+            { name: 'gardevoir', id: 282, region: 'hoenn' },
+            { name: 'surskit', id: 283, region: 'hoenn' },
+            { name: 'masquerain', id: 284, region: 'hoenn' },
+            { name: 'shroomish', id: 285, region: 'hoenn' },
+            { name: 'breloom', id: 286, region: 'hoenn' },
+            { name: 'slakoth', id: 287, region: 'hoenn' },
+            { name: 'vigoroth', id: 288, region: 'hoenn' },
+            { name: 'slaking', id: 289, region: 'hoenn' },
+            { name: 'nincada', id: 290, region: 'hoenn' },
+            { name: 'ninjask', id: 291, region: 'hoenn' },
+            { name: 'shedinja', id: 292, region: 'hoenn' },
+            { name: 'whismur', id: 293, region: 'hoenn'},
+            { name: 'loudred', id: 294, region: 'hoenn' },
+            { name: 'exploud', id: 295, region: 'hoenn' },
+            { name: 'makuhita', id: 296, region: 'hoenn' },
+            { name: 'hariyama', id: 297, region: 'hoenn' },
+            { name: 'azurill', id: 298, region: 'hoenn' },
+            { name: 'nosepass', id: 299, region: 'hoenn' },
+            { name: 'skitty', id: 300, region: 'hoenn' },
+            { name: 'delcatty', id: 301, region: 'hoenn' },
+            { name: 'sableye', id: 302, region:'hoenn'},
+            { name:'mawile',id :303 ,region:'hoenn'},
+            { name:'aron',id :304 ,region:'hoenn'},
+            { name:'lairon',id :305 ,region:'hoenn'},
+            { name:'aggron',id :306 ,region:'hoenn'},
+            { name:'meditite',id :307 ,region:'hoenn'},
+            { name:'medicham',id :308 ,region:'hoenn'},
+            { name:'electrike',id :309 ,region:'hoenn'},
+            { name:'manectric',id :310 ,region:'hoenn'},
+            { name:'plusle',id :311 ,region:'hoenn'},
+            { name:'minun',id :312 ,region:'hoenn'},
+            { name:'volbeat',id :313 ,region:'hoenn'},
+            { name:'illumise',id :314 ,region:'hoenn'},
+            { name:'roselia',id :315 ,region:'hoenn'},
+            { name:'gulpin',id :316 ,region:'hoenn'},
+            { name:'swalot',id :317 ,region:'hoenn'},
+            { name:'carvanha',id :318 ,region:'hoenn'},
+            { name:'sharpedo',id :319 ,region:'hoenn'},
+            { name:'wailmer',id :320 ,region:'hoenn'},
+            { name:'wailord',id :321 ,region:'hoenn'},
+            { name:'numel',id :322 ,region:'hoenn'},
+            { name:'camerupt',id :323 ,region:'hoenn'},
+            { name:'torkoal',id :324 ,region:'hoenn'},
+            { name:'spoink',id :325 ,region:'hoenn'},
+            { name:'grumpig',id :326 ,region:'hoenn'},
+            { name: 'spinda', id: 327, region: 'hoenn' },
+            { name: 'trapinch', id: 328, region: 'hoenn' },
+            { name: 'vibrava', id: 329, region: 'hoenn' },
+            { name: 'flygon', id: 330, region: 'hoenn' },
+            { name: 'cacnea', id: 331, region: 'hoenn' },
+            { name: 'cacturne', id: 332, region: 'hoenn' },
+            { name: 'swablu', id: 333, region:'hoenn'},
+            { name:'altaria',id :334 ,region:'hoenn'},
+            { name:'zangoose',id :335 ,region:'hoenn'},
+            { name:'seviper',id :336 ,region:'hoenn'},
+            { name:'lunatone',id :337 ,region:'hoenn'},
+            { name:'solrock',id :338 ,region:'hoenn'},
+            { name:'barboach',id :339 ,region:'hoenn'},
+            { name:'whiscash',id :340 ,region:'hoenn'},
+            { name:'corphish',id :341 ,region:'hoenn'},
+            { name:'crawdaunt',id :342 ,region:'hoenn'},
+            { name:'baltoy',id :343 ,region:'hoenn'},
+            { name:'claydol',id :344 ,region:'hoenn'},
+            { name:'lileep',id :345 ,region:'hoenn'},
+            { name:'cradily',id :346 ,region:'hoenn'},
+            { name:'anorith',id :347 ,region:'hoenn'},
+            { name:'armaldo',id :348 ,region:'hoenn'},
+            { name: 'feebas', id: 349, region: 'hoenn' },
+            { name: 'milotic', id: 350, region: 'hoenn' },
+            { name: 'castform', id: 351, region: 'hoenn' },
+            { name: 'kecleon', id: 352, region: 'hoenn' },
+            { name: 'shuppet', id: 353, region: 'hoenn' },
+            { name: 'banette', id: 354, region: 'hoenn' },
+            { name: 'duskull', id: 355, region:'hoenn'},
+            { name:'dusclops',id :356 ,region:'hoenn'},
+            { name:'tropius',id :357 ,region:'hoenn'},
+            { name:'chimecho',id :358 ,region:'hoenn'},
+            { name:'absol',id :359 ,region:'hoenn'},
+            { name:'wynaut',id :360 ,region:'hoenn'},
+            { name:'snorunt',id :361 ,region:'hoenn'},
+            { name:'glalie',id :362 ,region:'hoenn'},
+            { name:'spheal',id :363 ,region:'hoenn'},
+            { name:'sealeo',id :364 ,region:'hoenn'},
+            { name:'walrein',id :365 ,region:'hoenn'},
+            { name:'clamperl',id :366 ,region:'hoenn'},
+            { name:'huntail',id :367 ,region:'hoenn'},
+            { name:'gorebyss',id :368 ,region:'hoenn'},
+            { name:'relicanth',id :369 ,region:'hoenn'},
+            { name:'luvdisc',id :370 ,region:'hoenn'},
+            { name: 'bagon', id: 371, region: 'hoenn' },
+            { name: 'shelgon', id: 372, region: 'hoenn' },
+            { name: 'salamence', id: 373, region: 'hoenn' },
+            { name: 'beldum', id: 374, region: 'hoenn' },
+            { name: 'metang', id: 375, region: 'hoenn' },
+            { name: 'metagross', id: 376, region: 'hoenn' },
+            { name: 'registeel', id: 377, region: 'hoenn' },
+            { name: 'regice', id: 378, region: 'hoenn' },
+            { name: 'regirock', id: 379, region: 'hoenn' },
+            { name: 'latias', id: 380, region: 'hoenn' },
+            { name: 'latios', id: 381, region: 'hoenn' },
+            { name: 'kyogre', id: 382, region: 'hoenn' },
+            { name: 'groudon', id: 383, region: 'hoenn' },
+            { name: 'rayquaza', id: 384, region: 'hoenn' },
+            { name:'jirachi',id :385 ,region:'hoenn'},
+            { name: 'deoxys-normal', id: 386, region: 'hoenn' },
             { name: 'turtwig', id: 387, region: 'sinnoh' },
             { name: 'grotle', id: 388, region: 'sinnoh' },
             { name: 'torterra', id: 389, region: 'sinnoh' },
+            { name: 'chimchar', id: 390, region: 'sinnoh' },
+            { name: 'monferno', id: 391, region: 'sinnoh' },
+            { name: 'infernape', id: 392, region: 'sinnoh' },
+            { name: 'piplup', id: 393, region: 'sinnoh' },
+            { name: 'prinplup', id: 394, region: 'sinnoh' },
+            { name: 'empoleon', id: 395, region: 'sinnoh' },
+            { name: 'starly', id: 396, region:'sinnoh'},
+            { name:'staravia',id :397 ,region:'sinnoh'},
+            { name:'staraptor',id :398 ,region:'sinnoh'},
+            { name:'bidoof',id :399 ,region:'sinnoh'},
+            { name:'bibarel',id :400 ,region:'sinnoh'},
+            { name:'kricketot',id :401 ,region:'sinnoh'},
+            { name:'kricketune',id :402 ,region:'sinnoh'},
+            { name:'shinx',id :403 ,region:'sinnoh'},
+            { name:'luxio',id :404 ,region:'sinnoh'},
+            { name:'luxray',id :405 ,region:'sinnoh'},
+            { name:'budew',id :406 ,region:'sinnoh'},
+            { name:'roserade',id :407 ,region:'sinnoh'},
+            { name:'cranidos',id :408 ,region:'sinnoh'},
+            { name:'rampardos',id :409 ,region:'sinnoh'},
+            { name:'shieldon',id :410 ,region:'sinnoh'},
+            { name:'bastiodon',id :411 ,region:'sinnoh'},
+            { name: 'burmy', id: 412, region: 'sinnoh' },
+            { name: 'wormadam', id: 413, region: 'sinnoh' },
+            { name: 'mothim', id: 414, region: 'sinnoh' },
+            { name: 'combee', id: 415, region: 'sinnoh' },
+            { name: 'vespiquen', id: 416, region: 'sinnoh' },
+            { name: 'pachirisu', id: 417, region: 'sinnoh' },
+            { name: 'buizel', id: 418, region: 'sinnoh' },
+            { name: 'floatzel', id: 419, region: 'sinnoh' },
+            { name: 'cherubi', id: 420, region:'sinnoh'},
+            { name:'cherrim',id :421 ,region:'sinnoh'},
+            { name:'shellos',id :422 ,region:'sinnoh'},
+            { name:'gastrodon',id :423 ,region:'sinnoh'},
+            { name:'ambipom',id :424 ,region:'sinnoh'},
+            { name:'drifloon',id :425 ,region:'sinnoh'},
+            { name:'drifblim',id :426 ,region:'sinnoh'},
+            { name:'buneary',id :427 ,region:'sinnoh'},
+            { name:'lopunny',id :428 ,region:'sinnoh'},
+            { name:'mismagius',id :429 ,region:'sinnoh'},
+            { name:'honchkrow',id :430 ,region:'sinnoh'},
+            { name:'glameow',id :431 ,region:'sinnoh'},
+            { name:'purugly',id :432 ,region:'sinnoh'},
+            { name:'chingling',id :433 ,region:'sinnoh'},
+            { name:'stunky',id :434 ,region:'sinnoh'},
+            { name:'skuntank',id :435 ,region:'sinnoh'},
+            { name: 'bronzor', id: 436, region: 'sinnoh' },
+            { name: 'bronzong', id: 437, region: 'sinnoh' },
+            { name: 'bonsly', id: 438, region: 'sinnoh' },
+            { name: 'mime-jr', id: 439, region: 'sinnoh' },
+            { name: 'happiny', id: 440, region: 'sinnoh' },
+            { name: 'chatot', id: 441, region: 'sinnoh' },
+            { name: 'spiritomb', id: 442, region: 'sinnoh' },
+            { name: 'gible', id: 443, region:'sinnoh'},
+            { name:'gabite',id :444 ,region:'sinnoh'},
+            { name:'garchomp',id :445 ,region:'sinnoh'},
+            { name:'munchlax',id :446 ,region:'sinnoh'},
+            { name: 'riolu', id: 447, region: 'sinnoh' },
+            { name: 'lucario', id: 448, region: 'sinnoh' },
+            { name: 'hippopotas', id: 449, region: 'sinnoh' },
+            { name: 'hippowdon', id: 450, region: 'sinnoh' },
+            { name: 'skorupi', id: 451, region: 'sinnoh' },
+            { name: 'drapion', id: 452, region: 'sinnoh' },
+            { name: 'croagunk', id: 453, region:'sinnoh'},
+            { name:'toxicroak',id :454 ,region:'sinnoh'},
+            { name:'carnivine',id :455 ,region:'sinnoh'},
+            { name:'finneon',id :456 ,region:'sinnoh'},
+            { name:'lumineon',id :457 ,region:'sinnoh'},
+            {name: 'mantyke', id: 458, region:'sinnoh'},
+            { name:'snover',id :459 ,region:'sinnoh'},
+            { name:'abomasnow',id:460 ,region:'sinnoh'},
+            { name:'weavile',id: 461 ,region:'sinnoh'},
+            { name:'magnezone',id :462 ,region:'sinnoh'},
+            { name:'lickilicky',id :463 ,region:'sinnoh'},
+            { name:'rhyperior',id :464 ,region:'sinnoh'},
+            { name:'tangrowth',id :465 ,region:'sinnoh'},
+            { name:'electivire',id :466 ,region:'sinnoh'},
+            { name:'magmortar',id :467 ,region:'sinnoh'},
+            { name:'togekiss',id :468 ,region:'sinnoh'},
+            { name: 'yanmega', id: 469, region: 'sinnoh' },
+            { name: 'leafeon', id: 470, region: 'sinnoh' },
+            { name: 'glaceon', id: 471, region: 'sinnoh' },
+            { name: 'gliscor', id: 472, region: 'sinnoh' },
+            { name: 'mamoswine', id: 473, region: 'sinnoh' },
+            { name: 'porygon-z', id: 474, region: 'sinnoh' },
+            { name: 'gallade', id: 475, region: 'sinnoh' },
+            { name: 'probopass', id: 476, region: 'sinnoh' },
+            { name: 'dusknoir', id: 477, region: 'sinnoh' },
+            { name: 'froslass', id: 478, region: 'sinnoh' },
+            { name: 'rotom', id: 479, region: 'sinnoh' },
+            { name: 'uxie', id: 480, region: 'sinnoh' },
+            { name: 'mesprit', id: 481, region: 'sinnoh' },
+            { name: 'azelf', id: 482, region: 'sinnoh' },
+            { name: 'dialga', id: 483, region:'sinnoh'},
+            { name:'palkia',id :484 ,region:'sinnoh'},
+            { name:'heatran',id :485 ,region:'sinnoh'},
+            { name:'regigigas',id :486 ,region:'sinnoh'},
+            { name:'giratina-altered',id :487 ,region:'sinnoh'},
+            { name:'cresselia',id :488 ,region:'sinnoh'},
+            { name:'phione',id :489 ,region:'sinnoh'},
+            { name:'manaphy',id :490 ,region:'sinnoh'},
+            { name:'darkrai',id :491 ,region:'sinnoh'},
+            { name:'shaymin-land',id :492 ,region:'sinnoh'},
+            { name:'arceus-normal',id :493 ,region:'sinnoh'},
             { name: 'victini', id: 494, region: 'Not Shiny Huntable'},
             { name: 'snivy', id: 495, region: 'unova' },
             { name: 'servine', id: 496, region: 'unova' },
             { name: 'serperior', id: 497, region: 'unova' },
+            { name: 'tepig', id: 498, region: 'unova' },
+            { name: 'pignite', id: 499, region: 'unova' },
+            { name: 'emboar', id: 500, region: 'unova' },
+            { name: 'oshawott', id: 501, region: 'unova' },
+            { name: 'dewott', id: 502, region: 'unova' },
+            { name: 'samurott', id: 503, region: 'unova' },
+            { name: 'samurott-hisui', id: 10236, region: 'hisui'},
+            { name: 'patrat', id: 504, region:'unova'},
+            { name:'watchog',id :505 ,region:'unova'},
+            { name:'lillipup',id :506 ,region:'unova'},
+            { name:'herdier',id :507 ,region:'unova'},
+            { name:'stoutland',id :508 ,region:'unova'},
+            { name:'purrloin',id :509 ,region:'unova'},
+            { name:'liepard',id :510 ,region:'unova'},
+            { name:'pansage',id :511 ,region:'unova'},
+            { name:'simisage',id :512 ,region:'unova'},
+            { name:'pansear',id :513 ,region:'unova'},
+            { name:'simisear',id :514 ,region:'unova'},
+            { name:'panpour',id :515 ,region:'unova'},
+            { name:'simipour',id :516 ,region:'unova'},
+            { name: 'munna', id: 517, region: 'unova' },
+            { name: 'musharna', id: 518, region: 'unova' },
+            { name: 'pidove', id: 519, region: 'unova' },
+            { name: 'tranquill', id: 520, region: 'unova' },
+            { name: 'unfezant', id: 521, region: 'unova' },
+            { name: 'blitzle', id: 522, region: 'unova' },
+            { name: 'zebstrika', id: 523, region: 'unova' },
+            { name: 'roggenrola', id: 524, region: 'unova' },
+            { name: 'boldore', id: 525, region: 'unova' },
+            { name: 'gigalith', id: 526, region: 'unova' },
+            { name: 'woobat', id: 527, region:'unova'},
+            { name:'swoobat',id :528 ,region:'unova'},
+            { name:'drilbur',id :529 ,region:'unova'},
+            { name:'excadrill',id :530 ,region:'unova'},
+            { name:'audino',id :531 ,region:'unova'},
+            { name:'timburr',id :532 ,region:'unova'},
+            { name:'gurdurr',id :533 ,region:'unova'},
+            { name:'conkeldurr',id :534 ,region:'unova'},
+            { name:'tympole',id :535 ,region:'unova'},
+            { name:'palpitoad',id :536 ,region:'unova'},
+            { name:'seismitoad',id :537 ,region:'unova'},
+            { name: 'throh', id: 538, region: 'unova' },
+            { name: 'sawk', id: 539, region: 'unova' },
+            { name: 'sewaddle', id: 540, region: 'unova' },
+            { name: 'swadloon', id: 541, region: 'unova' },
+            { name: 'leavanny', id: 542, region: 'unova' },
+            { name: 'venipede', id: 543, region: 'unova' },
+            { name: 'whirlipede', id: 544, region :'unova'},
+            { name:'scolipede',id :545 ,region :'unova'},
+            { name:'cottonee',id :546 ,region :'unova'},
+            { name:'whimsicott', id: 547, region :'unova'},
+            { name:'petilil',id :548 ,region :'unova'},
+            { name:'lilligant',id :549 ,region :'unova'},
+            { name:'lilligant-hisui', id: 10237, region: 'hisui'},
+            { name:'basculin-red-striped',id :550 ,region :'unova'},
+            { name:'sandile',id :551 ,region :'unova'},
+            { name:'krokorok',id :552 ,region :'unova'},
+            { name:'krookodile',id :553 ,region :'unova'},
+            { name: 'darumaka', id: 554, region: 'unova' },
+            { name: 'darumaka-galarian', id: 10176, region: 'galar' },
+            { name: 'darmanitan', id: 555, region: 'unova' },
+            { name: 'darmanitan-galarian', id: 10177, region: 'galar' },
+            { name: 'maractus', id: 556, region: 'unova' },
+            { name: 'dwebble', id: 557, region: 'unova' },
+            { name: 'crustle', id: 558, region: 'unova' },
+            { name: 'scraggy', id: 559, region: 'unova' },
+            { name: 'scrafty', id: 560, region: 'unova' },
+            { name:'sigilyph',id :561 ,region :'unova'},
+            { name:'yamask',id :562 ,region :'unova'},
+            { name:'yamask-galarian', id: 10179, region :'galar'},
+            { name:'cofagrigus',id :563 ,region :'unova'},
+            { name:'tirtouga',id :564 ,region :'unova'},
+            { name:'carracosta',id :565 ,region :'unova'},
+            { name:'archen',id :566 ,region :'unova'},
+            { name:'archeops',id :567 ,region :'unova'},
+            { name:'trubbish',id :568 ,region :'unova'},
+            { name:'garbodor',id :569 ,region :'unova'},
+            { name: 'zorua', id: 570, region: 'unova' },
+            { name: 'zorua-hisui', id: 10238, region: 'hisui' },
+            { name: 'zoroark', id: 571, region: 'unova' },
+            { name: 'zoroark-hisui', id: 10239, region: 'hisui' },
+            { name: 'minccino', id: 572, region: 'unova' },
+            { name: 'cinccino', id: 573, region: 'unova' },
+            { name:'gothita',id :574 ,region :'unova'},
+            { name:'gothorita',id :575 ,region :'unova'},
+            { name:'gothitelle',id :576 ,region :'unova'},
+            { name:'solosis', id: 577, region: 'unova' },
+            { name: 'duosion', id: 578, region: 'unova' },
+            { name: 'reuniclus', id: 579, region: 'unova' },
+            { name:'ducklett',id :580 ,region :'unova'},
+            { name:'swanna',id :581 ,region :'unova'},
+            { name:'vanillite',id :582 ,region :'unova'},
+            { name:'vanillish',id :583 ,region :'unova'},
+            { name:'vanilluxe',id :584 ,region :'unova'},
+            { name:'deerling',id :585 ,region :'unova'},
+            { name:'sawsbuck',id :586 ,region :'unova'},
+            { name:'emolga',id :587 ,region :'unova'},
+            { name:'karrablast',id :588 ,region :'unova'},
+            { name:'escavalier',id :589 ,region :'unova'},
+            { name:'foongus',id :590 ,region :'unova'},
+            { name:'amoonguss',id :591 ,region :'unova'},
+            { name: 'frillish', id: 592, region: 'unova' },
+            { name: 'jellicent', id: 593, region: 'unova' },
+            { name: 'alomomola', id: 594, region: 'unova' },
+            { name: 'joltik', id: 595, region: 'unova' },
+            { name: 'galvantula', id: 596, region: 'unova' },
+            { name:'ferroseed',id :597 ,region :'unova'},
+            { name:'ferrothorn',id :598 ,region :'unova'},
+            { name:'klink',id :599 ,region :'unova'},
+            { name:'klang',id :600 ,region :'unova'},
+            { name:'klinklang',id :601 ,region :'unova'},
+            { name:'tynamo',id :602 ,region :'unova'},
+            { name:'eelektrik',id :603 ,region :'unova'},
+            { name:'eelektross',id :604 ,region :'unova'},
+            { name:'elgyem',id :605 ,region :'unova'},
+            { name:'beheeyem',id :606 ,region :'unova'},
+            { name:'litwick',id :607 ,region :'unova'},
+            { name:'lampent',id :608 ,region :'unova'},
+            { name:'chandelure',id :609 ,region :'unova'},
+            { name:'axew',id :610 ,region :'unova'},
+            { name:'fraxure',id :611 ,region :'unova'},
+            { name:'haxorus',id :612 ,region :'unova'},
+            { name: 'cubchoo', id: 613, region: 'unova' },
+            { name: 'beartic', id: 614, region: 'unova' },
+            { name: 'cryogonal', id: 615, region: 'unova' },
+            { name: 'shelmet', id: 616, region: 'unova' },
+            { name: 'accelgor', id: 617, region: 'unova' },
+            { name:'stunfisk',id :618 ,region :'unova'},
+            { name:'stunfisk-galarian', id: 10180, region :'galar'},
+            { name:'mienfoo',id:619 ,region :'unova'},
+            { name:'mienshao',id :620 ,region :'unova'},
+            { name:'druddigon',id :621 ,region :'unova'},
+            { name:'golett',id :622 ,region :'unova'},
+            { name:'golurk',id :623 ,region :'unova'},
+            { name: 'pawniard', id: 624, region: 'unova' },
+            { name: 'bisharp', id: 625, region: 'unova' },
+            { name: 'bouffalant', id: 626, region: 'unova' },
+            { name: 'rufflet', id: 627, region: 'unova' },
+            { name: 'braviary', id: 628, region: 'unova' },
+            { name: 'braviary-hisui', id: 10240, region: 'hisui'},
+            { name:'vullaby',id :629 ,region :'unova'},
+            { name:'mandibuzz',id :630 ,region :'unova'},
+            { name:'heatmor',id :631 ,region :'unova'},
+            { name:'durant',id :632 ,region :'unova'},
+            { name:'deino',id :633 ,region :'unova'},
+            { name:'zweilous',id :634 ,region :'unova'},
+            { name:'hydreigon',id :635 ,region :'unova'},
+            { name:'larvesta',id :636 ,region :'unova'},
+            { name:'volcarona',id :637 ,region :'unova'},
+            { name: 'cobalion', id: 638, region: 'unova' },
+            { name: 'terrakion', id: 639, region: 'unova' },
+            { name: 'virizion', id: 640, region: 'unova' },
+            { name: 'tornadus-incarnate', id: 641, region: 'unova' },
+            { name: 'thundurus-incarnate', id: 642, region: 'unova' },
+            { name: 'reshiram', id: 643, region:'unova'},
+            { name:'zekrom',id :644 ,region:'unova'},
+            { name:'landorus-incarnate',id :645 ,region:'unova'},
+            { name: 'kyurem', id: 646, region: 'unova'},
+            { name: 'keldeo', id: 647, region: 'unova'},
+            { name: 'meloetta', id: 648, region: 'unova'},
+            { name: 'genesect', id: 649, region: 'unova'},
             { name: 'chespin', id: 650, region: 'kalos' },
             { name: 'quilladin', id: 651, region: 'kalos' },
             { name: 'chesnaught', id: 652, region: 'kalos' },
+            { name: 'fennekin', id: 653, region: 'kalos' },
+            { name: 'braixen', id: 654, region: 'kalos' },
+            { name: 'delphox', id: 655, region: 'kalos' },
+            { name: 'froakie', id: 656, region: 'kalos' },
+            { name: 'frogadier', id: 657, region: 'kalos' },
+            { name: 'greninja', id: 658, region: 'kalos' },
+            { name:'bunnelby',id :659 ,region:'kalos'},
+            { name:'diggersby',id :660 ,region:'kalos'},
+            { name:'fletchling',id :661 ,region:'kalos'},
+            { name:'fletchinder',id :662 ,region:'kalos'},
+            { name:'talonflame',id :663 ,region:'kalos'},
+            { name:'scatterbug',id :664 ,region:'kalos'},
+            { name:'spewpa',id :665 ,region:'kalos'},
+            { name:'vivillon',id :666 ,region:'kalos'},
+            { name:'litleo',id :667 ,region:'kalos'},
+            { name:'pyroar',id :668 ,region:'kalos'},
+            { name:'flabebe',id :669 ,region:'kalos'},
+            { name:'floette',id :670 ,region:'kalos'},
+            { name:'florges',id :671 ,region:'kalos'},
+            { name: 'skiddo', id: 672, region: 'kalos' },
+            { name: 'gogoat', id: 673, region: 'kalos' },
+            { name: 'pancham', id: 674, region: 'kalos' },
+            { name: 'pangoro', id: 675, region: 'kalos' },
+            { name: 'furfrou', id: 676, region: 'kalos' },
+            { name: 'espurr', id: 677, region :'kalos'},
+            { name: 'meowstic', id: 678, region: 'kalos' },
+            { name: 'honedge', id: 679, region: 'kalos' },
+            { name: 'doublade', id: 680, region: 'kalos' },
+            { name: 'aegislash', id: 681, region: 'kalos' },
+            { name: 'spritzee', id: 682, region: 'kalos' },
+            { name: 'aromatisse', id: 683, region: 'kalos' },
+            { name: 'swirlix', id: 684, region: 'kalos' },
+            { name: 'slurpuff', id: 685, region: 'kalos' },
+            { name:'inkay',id :686 ,region:'kalos'},
+            { name:'malamar',id :687 ,region:'kalos'},
+            { name:'binacle',id :688 ,region:'kalos'},
+            { name:'barbaracle',id :689 ,region:'kalos'},
+            { name:'skrelp',id :690 ,region:'kalos'},
+            { name:'dragalge',id :691 ,region:'kalos'},
+            { name:'clauncher',id :692 ,region:'kalos'},
+            { name:'clawitzer',id :693 ,region:'kalos'},
+            { name: 'helioptile', id: 694, region: 'kalos' },
+            { name: 'heliolisk', id: 695, region: 'kalos' },
+            { name: 'tyrunt', id: 696, region: 'kalos' },
+            { name: 'tyrantrum', id: 697, region: 'kalos' },
+            { name: 'amaura', id: 698, region: 'kalos' },
+            { name: 'aurorus', id: 699, region: 'kalos' },
+            { name:'sylveon',id :700 ,region :'kalos'},
+            { name:'hawlucha',id :701 ,region :'kalos'},
+            { name:'dedenne',id :702 ,region :'kalos'},
+            { name:'carbink',id :703 ,region :'kalos'},
+            { name:'goomy',id :704 ,region :'kalos'},
+            { name:'sliggoo',id :705 ,region :'kalos'},
+            { name: 'sliggoo-hisui', id: 10241, region: 'hisui'},
+            { name:'goodra',id :706 ,region :'kalos'},
+            { name: 'goodra-hisui', id: 10242, region: 'hisui'},
+            { name:'klefki',id :707 ,region :'kalos'},
+            { name:'phantump',id :708 ,region :'kalos'},
+            { name:'trevenant',id :709 ,region :'kalos'},
+            { name:'pumpkaboo-average',id :710 ,region :'kalos'},
+            { name:'gourgeist-average',id :711 ,region :'kalos'},
+            { name:'bergmite',id :712 ,region :'kalos'},
+            { name:'avalugg',id :713 ,region :'kalos'},
+            { name: 'avalugg-hisui', id: 10243, region: 'hisui'},
+            { name: 'noibat', id: 714, region: 'kalos' },
+            { name: 'noivern', id: 715, region: 'kalos' },
+            { name: 'xerneas', id: 716, region: 'kalos' },
+            { name: 'yveltal', id: 717, region: 'kalos' },
+            { name: 'zygarde-50', id: 718, region: 'kalos' },
+            { name: 'diancie', id: 719, region: 'kalos' },
+            { name: 'hoopa-confined', id: 720, region: 'Not Shiny Huntable' },
+            { name: 'volcanion', id: 721, region: 'Not Shiny Huntable' },
             { name: 'rowlet', id: 722, region: 'alola' },
             { name: 'dartrix', id: 723, region: 'alola' },
             { name: 'decidueye', id: 724, region: 'alola' },
+            { name: 'decidueye-hisui', id: 10244, region: 'hisui' },
+            { name: 'litten', id: 725, region: 'alola' },
+            { name: 'torracat', id: 726, region: 'alola' },
+            { name: 'incineroar', id: 727, region: 'alola' },
+            { name: 'popplio', id: 728, region: 'alola' },
+            { name: 'brionne', id: 729, region: 'alola' },
+            { name: 'primarina', id: 730, region: 'alola' },
+            { name:'pikipek',id :731 ,region:'alola'},
+            { name:'trumbeak',id :732 ,region:'alola'},
+            { name:'toucannon',id :733 ,region:'alola'},
+            { name:'yungoos',id :734 ,region:'alola'},
+            { name:'gumshoos',id :735 ,region:'alola'},
+            { name:'grubbin',id :736 ,region:'alola'},
+            { name:'charjabug',id :737 ,region:'alola'},
+            { name:'vikavolt',id :738 ,region:'alola'},
+            { name:'crabrawler',id :739 ,region:'alola'},
+            { name:'crabominable',id :740 ,region:'alola'},
+            { name:'oricorio',id :741 ,region:'alola'},
+            { name:'cutiefly',id :742 ,region:'alola'},
+            { name:'ribombee',id :743 ,region:'alola'},
+            { name:'rockruff',id :744 ,region:'alola'},
+            { name:'lycanroc-midday',id :745 ,region:'alola'},
+            { name: 'wishiwashi', id: 746, region: 'alola' },
+            { name: 'mareanie', id: 747, region: 'alola' },
+            { name: 'toxapex', id: 748, region: 'alola' },
+            { name: 'mudbray', id: 749, region: 'alola' },
+            { name: 'mudsdale', id: 750, region: 'alola' },
+            { name:'dewpider',id :751 ,region:'alola'},
+            { name:'araquanid',id :752 ,region:'alola'},
+            { name:'fomantis',id :753 ,region:'alola'},
+            { name:'lurantis',id :754 ,region:'alola'},
+            { name:'morelull',id :755 ,region:'alola'},
+            { name:'shiinotic',id :756 ,region:'alola'},
+            { name: 'salandit', id: 757, region: 'alola' },
+            { name: 'salazzle', id: 758, region: 'alola' },
+            { name: 'stufful', id: 759, region: 'alola' },
+            { name: 'bewear', id: 760, region: 'alola' },
+            { name:'bounsweet',id :761 ,region :'alola'},
+            { name:'steenee',id :762 ,region :'alola'},
+            { name:'tsareena',id :763 ,region :'alola'},
+            { name:'comfey',id :764 ,region :'alola'},
+            { name:'oranguru',id :765 ,region :'alola'},
+            { name:'passimian',id :766 ,region :'alola'},
+            { name:'wimpod',id :767 ,region :'alola'},
+            { name:'golisopod',id :768 ,region :'alola'},
+            { name:'sandygast',id :769 ,region :'alola'},
+            { name:'palossand',id :770 ,region :'alola'},
+            { name: 'pyukumuku', id: 771, region: 'alola' },
+            { name: 'type-null', id: 772, region: 'alola' },
+            { name: 'silvally', id: 773, region: 'alola' },
+            { name: 'minior-red', id: 774, region: 'alola' },
+            { name: 'komala', id: 775, region: 'alola' },
+            { name:'turtonator',id :776 ,region :'alola'},
+            { name:'togedemaru',id :777 ,region :'alola'},
+            { name:'mimikyu',id :778 ,region :'alola'},
+            { name:'bruxish',id :779 ,region :'alola'},
+            { name:'drampa',id :780 ,region :'alola'},
+            { name:'dhelmise',id :781 ,region :'alola'},
+            { name: 'jangmo-o', id: 782, region: 'alola' },
+            { name: 'hakamo-o', id: 783, region: 'alola' },
+            { name: 'kommo-o', id: 784, region: 'alola' },
+            { name:'tapu Koko',id :785 ,region :'alola'},
+            { name:'tapu Lele',id :786 ,region :'alola'},
+            { name:'tapu Bulu',id :787 ,region :'alola'},
+            { name:'tapu Fini',id :788 ,region :'alola'},
+            { name:'cosmog',id :789 ,region :'Not Shiny Huntable'},
+            { name:'cosmoem',id :790 ,region :'Not Shiny Huntable'},
+            { name:'solgaleo',id :791 ,region :'alola'},
+            { name:'lunala',id :792 ,region :'alola'},
+            { name:'nihilego',id :793 ,region :'alola'},
+            { name:'buzzwole',id :794 ,region :'alola'},
+            { name:'pheromosa',id :795 ,region :'alola'},
+            { name:'xurkitree',id :796 ,region :'alola'},
+            { name:'celesteela',id :797 ,region :'alola'},
+            { name:'kartana',id :798 ,region :'alola'},
+            { name:'guzzlord',id :799 ,region :'alola'},
+            { name: 'necrozma', id: 800, region: 'alola' },
+            { name: 'magearna', id: 801, region: 'Not Shiny Huntable' },
+            { name: 'marshadow', id: 802, region: 'Not Shiny Huntable' },
+            { name: 'poipole', id: 803, region: 'alola' },
+            { name: 'naganadel', id: 804, region: 'alola' },
+            { name: 'stakataka', id: 805, region: 'alola' },
+            { name: 'blacephalon', id: 806, region: 'alola' },
+            { name:'zeraora',id :807 ,region :'Not Shiny Huntable'},
+            { name:'meltan',id :808 ,region :'Go'},
+            { name:'melmetal',id :809 ,region :'Go'},
             { name: 'grookey', id: 810, region: 'galar' },
             { name: 'thwackey', id: 811, region: 'galar' },
             { name: 'rillaboom', id: 812, region: 'galar' },
-            { name: 'typhlosion-hisui',id: 10233, region: 'hisui' },
-            { name: 'samurott-hisui', id: 10236, region: 'hisui'},
-            { name: 'decidueye-hisui', id: 10244, region: 'hisui' },
+            { name: 'scorbunny', id: 813, region: 'galar' },
+            { name: 'raboot', id: 814, region: 'galar' },
+            { name: 'cinderace', id: 815, region: 'galar' },
+            { name: 'sobble', id: 816, region: 'galar' },
+            { name: 'drizzile', id: 817, region: 'galar' },
+            { name: 'inteleon', id: 818, region: 'galar' },
+            { name:'skwovet',id :819 ,region :'galar'},
+            { name:'greedent',id :820 ,region :'galar'},
+            { name:'rookidee',id :821 ,region :'galar'},
+            { name:'corvisquire',id :822 ,region :'galar'},
+            { name:'corviknight',id :823 ,region :'galar'},
+            { name:'blipbug',id :824 ,region :'galar'},
+            { name:'dottler',id :825 ,region :'galar'},
+            { name:'orbeetle',id :826 ,region :'galar'},
+            { name:'nickit',id :827 ,region :'galar'},
+            { name:'thievul',id :828 ,region :'galar'},
+            { name:'gossifleur',id :829 ,region :'galar'},
+            { name:'eldegoss',id :830 ,region :'galar'},
+            { name:'wooloo',id :831 ,region :'galar'},
+            { name:'dubwool',id :832 ,region :'galar'},
+            { name: 'chewtle', id: 833, region: 'galar' },
+            { name: 'drednaw', id: 834, region: 'galar' },
+            { name: 'yamper', id: 835, region: 'galar' },
+            { name: 'boltund', id: 836, region: 'galar' },
+            { name:'rolycoly',id :837 ,region :'galar'},
+            { name:'carkol',id :838 ,region :'galar'},
+            { name:'coalossal',id :839 ,region :'galar'},
+            { name:'applin',id :840 ,region :'galar'},
+            { name:'flapple',id :841 ,region :'galar'},
+            { name:'appletun',id :842 ,region :'galar'},
+            { name:'silicobra',id: 843, region: 'galar'},
+            { name: 'sandaconda', id: 844, region: 'galar' },
+            { name:'cramorant',id :845 ,region :'galar'},
+            { name:'arrokuda',id :846 ,region :'galar'},
+            { name:'barraskewda',id :847 ,region :'galar'},
+            { name:'toxel',id :848 ,region :'galar'},
+            { name:'toxtricity-amped',id :849 ,region :'galar'},
+            { name: 'sizzlipede', id: 850, region: 'galar' },
+            { name: 'centiskorch', id: 851, region: 'galar' },
+            { name:'clobbopus',id :852 ,region :'galar'},
+            { name:'grapploct',id :853 ,region :'galar'},
+            { name:'sinistea',id :854 ,region :'galar'},
+            { name:'polteageist',id :855 ,region :'galar'},
+            { name:'hatenna',id :856 ,region :'galar'},
+            { name:'hattrem',id :857 ,region :'galar'},
+            { name:'hatterene',id :858 ,region :'galar'},
+            { name:'impidimp',id :859 ,region :'galar'},
+            { name:'morgrem',id :860 ,region :'galar'},
+            { name:'grimmsnarl',id :861 ,region :'galar'},
+            { name: 'obstagoon', id: 862, region: 'galar' },
+            { name: 'perrserker', id: 863, region: 'galar' },
+            { name: 'cursola', id: 864, region: 'galar' },
+            { name: 'sirfetchd', id: 865, region: 'galar' },
+            { name:'runerigus',id :867 ,region :'galar'},
+            { name:'milcery',id :868 ,region :'galar'},
+            { name:'alcremie',id :869 ,region :'galar'},
+            { name:'falinks',id :870 ,region :'galar'},
+            { name:'pincurchin',id :871 ,region :'galar'},
+            { name:'snom',id :872 ,region :'galar'},
+            { name:'frosmoth',id :873 ,region :'galar'},
+            { name: 'stonjourner', id: 874, region: 'galar' },
+            { name: 'eiscue', id: 875, region: 'galar' },
+            { name: 'indeedee', id: 876, region: 'galar' },
+            { name: 'morpeko', id: 877, region: 'galar' },
+            { name:'cufant',id :878 ,region :'galar'},
+            { name:'copperajah',id :879 ,region :'galar'},
+            { name:'dracozolt',id :880 ,region :'galar'},
+            { name:'arctozolt',id :881 ,region :'galar'},
+            { name:'dracovish',id :882 ,region :'galar'},
+            { name:'arctovish',id :883 ,region :'galar'},
+            { name:'duraludon',id :884 ,region :'galar'},
+            { name: 'dreepy', id: 885, region: 'galar' },
+            { name: 'drakloak', id: 886, region: 'galar' },
+            { name: 'dragapult', id: 887, region: 'galar' },
+            { name:'zacian',id :888 ,region :'Not Shiny Huntable'},
+            { name:'zamazenta',id :889 ,region :'Not Shiny Huntable'},
+            { name:'eternatus',id :890 ,region :'Not Shiny Huntable'},
+            { name:'kubfu',id :891 ,region :'Not Shiny Huntable'},
+            { name:'urshifu',id :892 ,region :'Not Shiny Huntable'},
+            { name:'zarude',id :893 ,region :'Not Shiny Huntable'},
+            { name:'regieleki',id :894 ,region :'galar'},
+            { name:'regidrago',id :895 ,region :'galar'},
+            { name:'glastrier',id :896 ,region :'Not Shiny Huntable'},
+            { name:'spectrier',id :897 ,region :'Not Shiny Huntable'},
+            { name:'calyrex',id :898 ,region :'Not Shiny Huntable'},
+            { name: 'wyrdeer', id: 899, region: 'hisui' },
+            { name: 'kleavor', id: 900, region: 'hisui' },
+            { name: 'ursaluna', id: 901, region: 'hisui' },
+            { name: 'basculegion', id: 902, region: 'hisui' },
+            { name: 'sneasler', id: 903, region: 'hisui' },
+            { name: 'overqwil', id: 904, region: 'hisui' },
+            { name: 'enamorus-incarnate', id: 905, region: 'hisui' },
             { name: 'sprigatito', id: 906, region: 'paldea' },
             { name: 'floragato', id: 907, region: 'paldea' },
             { name: 'meowscarada', id: 908, region: 'paldea' },
+            { name: 'Fuecoco', id: 909, region: 'paldea' },
+            { name: 'Crocalor', id: 910, region: 'paldea' },
+            { name: 'Skeledirge', id: 911, region: 'paldea' },
+            { name: 'Quaxly', id: 912, region: 'paldea' },
+            { name: 'Quaxwell', id: 913, region: 'paldea' },
+            { name: 'Quaquaval', id: 914, region: 'paldea' },
+            { name:'Lechonk',id :915 ,region :'paldea'},
+            { name: 'Oinkologne', id: 916, region: 'paldea' },
+            { name:'Tarountula',id :917 ,region :'paldea'},
+            { name: 'Spidops', id: 918, region: 'paldea' },
+            { name:'Nymble',id :919 ,region :'paldea'},
+            { name:'Lokix',id :920 ,region :'paldea'},
+            { name:'Pawmi', id: 921, region: 'paldea' },
+            { name:'Pawmo',id :922 ,region :'paldea'},
+            { name:'Pawmot',id :923 ,region :'paldea'},
+            { name:'Tandemaus', id: 924, region: 'paldea' },
+            { name:'Maushold',id :925 ,region :'paldea'},
+            { name:'Fidough',id :926 ,region :'paldea'},
+            { name:'Dachsbun',id :927 ,region :'paldea'},
+            { name:'Smoliv',id :928 ,region :'paldea'},
+            { name:'Dolliv',id :929 ,region :'paldea'},
+            { name:'Arboliva',id :930 ,region :'paldea'},
+            { name: 'Squawkabilly', id: 931, region: 'paldea' },
+            { name:'Nacli', id: 932, region: 'paldea'},
+            { name:'Naclstack', id: 933, region: 'paldea'},
+            { name:'Garganacl', id: 934, region: 'paldea'},
+            { name:'Charcadet', id: 935, region: 'paldea'},
+            { name:'Armarouge', id: 936, region: 'paldea'},
+            { name:'Ceruledge', id: 937, region: 'paldea'},
+            { name:'tadbulb', id: 938, region: 'paldea'},
+            { name:'Bellibolt', id: 939, region: 'paldea'},
+            { name:'Wattrel', id: 940, region: 'paldea'},
+            { name:'Kilowattrel', id: 941, region: 'paldea'},
+            { name:'Maschiff', id: 942, region: 'paldea'},
+            { name:'Mabosstiff', id: 943, region: 'paldea'},
+            { name:'Shroodle', id: 944, region: 'paldea'},
+            { name:'Grafaiai', id: 945, region: 'paldea'},
+            { name:'Bramblin', id: 946, region: 'paldea'},
+            { name:'Brambleghast', id: 947, region: 'paldea'},
+            { name:'Toedscool', id: 948, region: 'paldea'},
+            { name:'Toedscruel', id: 949, region: 'paldea'},
+            { name:'Klawf', id: 950, region: 'paldea'},
+            { name:'Capsakid', id: 951, region: 'paldea'},
+            { name:'Scovillain', id: 952, region: 'paldea'},
+            { name:'Rellor', id: 953, region: 'paldea'},
+            { name:'Rabsca', id: 954, region: 'paldea'},
+            { name:'Flittle', id: 955, region: 'paldea'},
+            { name:'Espathra', id: 956, region: 'paldea'},
+            { name:'Tinkatink', id: 957, region: 'paldea'},
+            { name:'Tinkatuff', id: 958, region: 'paldea'},
+            { name:'Tinkaton', id: 959, region: 'paldea'},
+            { name:'Wiglett', id: 960, region: 'paldea'},
+            { name:'Wugtrio', id: 961, region: 'paldea'},
+            { name:'Bombirdier', id: 962, region: 'paldea'},
+            { name:'Finizen', id: 963, region: 'paldea'},
+            { name:'Palafin', id: 964, region: 'paldea'},
+            { name:'Varoom', id: 965, region: 'paldea'},
+            { name:'Revavroom', id: 966, region: 'paldea'},
+            { name:'Cyclizar', id: 967, region: 'paldea'},
+            { name:'Orthworm', id: 968, region: 'paldea'},
+            { name:'Glimmet', id: 969, region:'paldea'},
+            { name:'Glimmora', id: 970, region: 'paldea'},
+            { name:'Greavard', id: 971, region: 'paldea'},
+            { name:'Houndstone', id: 972, region: 'paldea'},
+            { name:'Flamigo', id: 973, region: 'paldea'},
+            { name:'Cetoddle', id: 974, region: 'paldea'},
+            { name:'Cetitan', id: 975, region: 'paldea'},
+            { name:'Veluza', id: 976, region: 'paldea'},
+            { name:'Dondozo', id: 977, region: 'paldea'},
+            { name:'Tatsugiri', id: 978, region: 'paldea'},
+            { name:'Annihilape', id: 979, region: 'paldea'},
+            { name:'Clodsire', id: 980, region: 'paldea'},
+            { name:'Farigiraf', id: 981, region: 'paldea'},
+            { name:'Dudunsparce', id: 982, region: 'paldea'},
+            { name:'Kingambit', id: 983, region: 'paldea'},
+            { name:'Great Tusk', id: 984, region: 'paldea'},
+            { name:'Scream Tail', id: 985, region: 'paldea'},
+            { name:'Brute Bonnet', id: 986, region: 'paldea'},
+            { name:'Flutter Mane', id: 987, region: 'paldea'},
+            { name:'Slither Wing', id: 988, region: 'paldea'},
+            { name:'Sandy Shocks', id: 989, region: 'paldea'},
+            { name:'Iron Treads', id: 990, region: 'paldea'},
+            { name:'Iron Bundle', id: 991, region: 'paldea'},
+            { name:'Iron Hands', id: 992, region: 'paldea'},
+            { name:'Iron Jugulis', id: 993, region: 'paldea'},
+            { name:'Iron Moth', id: 994, region: 'paldea'},
+            { name:'Iron Thorns', id: 995, region: 'paldea'},
+            { name:'Frigibax', id: 996, region: 'paldea'},
+            { name:'Arctibax', id: 997, region: 'paldea'},
+            { name:'Baxcalibur', id: 998, region: 'paldea'},
+            { name:'Gimmighoul', id: 999, region: 'paldea'},
+            { name:'Gholdengo', id: 1000, region: 'paldea'},
+            { name:'Wo-Chien', id: 1001, region: 'Not Shiny Huntable'},
+            { name:'Chien-Pao', id: 1002, region: 'Not Shiny Huntable'},
+            { name:'Ting-Lu', id: 1003, region: 'Not Shiny Huntable'},
+            { name:'Chi-Yu', id: 1004, region: 'Not Shiny Huntable'},
+            { name:'Roaring Moon', id: 1005, region: 'paldea'},
+            { name:'Iron Valiant', id: 1006, region: 'paldea'},
+            { name:'Koraidon', id: 1007, region: 'Not Shiny Huntable'},
+            { name:'Miraidon', id: 1008, region: 'Not Shiny Huntable'},
+            { name:'Walking Wake', id: 1009, region: 'Not Shiny Huntable'},
+            { name:'Iron Leaves', id: 1010, region: 'Not Shiny Huntable'},
+            { name:'Dipplin', id: 1011, region: 'paldea'},
+            { name:'Poltchageist', id: 1012, region: 'paldea'},
+            { name:'Sinistcha', id: 1013, region: 'paldea'},
+            { name:'Okidogi', id: 1014, region: 'Not Shiny Huntable'},
+            { name:'Munkidori', id: 1015, region: 'Not Shiny Huntable'},
+            { name:'Fezandipiti', id: 1016, region: 'Not Shiny Huntable'},
+            { name:'Ogerpon', id: 1017, region: 'Not Shiny Huntable'},
+            { name:'Archaludon', id: 1018, region: 'paldea'},
+            { name:'Hydrapple', id: 1019, region: 'paldea'},
+            { name:'Gouging Fire', id: 1020, region: 'Not Shiny Huntable'},
+            { name:'Raging Bolt', id: 1021, region: 'Not Shiny Huntable'},
+            { name:'Iron Boulder', id: 1022, region: 'Not Shiny Huntable'},
+            { name:'Iron Crown', id: 1023, region: 'Not Shiny Huntable'},
+            { name:'Terapagos', id: 1024, region: 'Not Shiny Huntable'},
+            { name:'Pecharunt', id: 1025, region: 'Not Shiny Huntable'},
+
+
+
             // ... add other Pokémon with their regions ...
             ];
 
@@ -1547,7 +2416,7 @@ function displayPokedex() {
             return acc;
         }, {});
 
-        const regionOrder = ['kanto', 'johto', 'hoenn', 'sinnoh', 'unova', 'kalos', 'alola', 'galar', 'hisui', 'paldea', 'Not Shiny Huntable'];
+        const regionOrder = ['kanto', 'johto', 'hoenn', 'sinnoh', 'unova', 'kalos', 'alola', 'galar', 'hisui', 'paldea','Go', 'Not Shiny Huntable'];
 
         regionOrder.forEach(region => {
             if (pokedexByRegion[region]) {
@@ -1615,7 +2484,7 @@ function getShinyOdds(method, hasCharm) {
             break;
         case 'chain-fishing':
             withoutCharm = 'Increases with chain (After 20, odds are the same), up to 1/100 (Gen 6)';
-            withCharm = 'Increases with chain (After 20, odds are the same), up to 1/100 (Gen 6)';
+            withCharm = 'Increases with chain (After 20, odds are the same), up to 1/96 (Gen 6)';
             break;
         case 'friend-safari':
             withoutCharm = '1/819 (Gen 6)';
@@ -1678,27 +2547,1163 @@ function updateCountDisplay() {
                 function getPokemonId(pokemonName) {
                 switch (pokemonName) {
                     case 'bulbasaur': return 1;
-                    case 'ivysaur': return 2;
-                    case 'venusaur': return 3;
-                    case 'charmander': return 4;
-                    case 'charmeleon': return 5;
-                    case 'charizard': return 6;
-                    case 'chikorita': return 152;
-                    case 'bayleef': return 153;
-                    case 'meganium': return 154;
-                    case 'treecko': return 252;
-                    case 'grovyle': return 253;
-                    case 'sceptile': return 254;
-                    case 'snivy': return 495;
-                    case 'servine': return 496;
-                    case 'serperior': return 497;
-                    case 'chespin': return 650;
-                    case 'quilladin': return 651;
-                    case 'chesnaught': return 652;
-                    case 'grookey': return 810;
-                    case 'thwackey': return 811;
-                    case 'rillaboom': return 812;
-                    default: return 0; // Or handle unknown Pokemon differently
+        case 'ivysaur': return 2;
+        case 'venusaur': return 3;
+        case 'charmander': return 4;
+        case 'charmeleon': return 5;
+        case 'charizard': return 6;
+        case 'squirtle': return 7;
+        case 'wartortle': return 8;
+        case 'blastoise': return 9;
+        case 'caterpie': return 10;
+        case 'metapod': return 11;
+        case 'butterfree': return 12;
+        case 'weedle': return 13;
+        case 'kakuna': return 14;
+        case 'beedrill': return 15;
+        case 'pidgey': return 16;
+        case 'pidgeotto': return 17;
+        case 'pidgeot': return 18;
+        case 'rattata': return 19;
+        case 'raticate': return 20;
+        case 'spearow': return 21;
+        case 'fearow': return 22;
+        case 'ekans': return 23;
+        case 'arbok': return 24;
+        case 'pikachu': return 25;
+        case 'raichu': return 26;
+        case 'sandshrew': return 27;
+        case 'sandslash': return 28;
+        case 'nidoran-f': return 29;
+        case 'nidorina': return 30;
+        case 'nidoqueen': return 31;
+        case 'nidoran-m': return 32;
+        case 'nidorino': return 33;
+        case 'nidoking': return 34;
+        case 'clefairy': return 35;
+        case 'clefable': return 36;
+        case 'vulpix': return 37;
+        case 'ninetales': return 38;
+        case 'jigglypuff': return 39;
+        case 'wigglytuff': return 40;
+        case 'zubat': return 41;
+        case 'golbat': return 42;
+        case 'oddish': return 43;
+        case 'gloom': return 44;
+        case 'vileplume': return 45;
+        case 'paras': return 46;
+        case 'parasect': return 47;
+        case 'venonat': return 48;
+        case 'venomoth': return 49;
+        case 'diglett': return 50;
+        case 'dugtrio': return 51;
+        case 'meowth': return 52;
+        case 'persian': return 53;
+        case 'psyduck': return 54;
+        case 'golduck': return 55;
+        case 'mankey': return 56;
+        case 'primeape': return 57;
+        case 'growlithe': return 58;
+        case 'arcanine': return 59;
+        case 'poliwag': return 60;
+        case 'poliwhirl': return 61;
+        case 'poliwrath': return 62;
+        case 'abra': return 63;
+        case 'kadabra': return 64;
+        case 'alakazam': return 65;
+        case 'machop': return 66;
+        case 'machoke': return 67;
+        case 'machamp': return 68;
+        case 'bellsprout': return 69;
+        case 'weepinbell': return 70;
+        case 'victreebel': return 71;
+        case 'tentacool': return 72;
+        case 'tentacruel': return 73;
+        case 'geodude': return 74;
+        case 'graveler': return 75;
+        case 'golem': return 76;
+        case 'ponyta': return 77;
+        case 'rapidash': return 78;
+        case 'slowpoke': return 79;
+        case 'slowbro': return 80;
+        case 'magnemite': return 81;
+        case 'magneton': return 82;
+        case 'farfetchd': return 83;
+        case 'doduo': return 84;
+        case 'dodrio': return 85;
+        case 'seel': return 86;
+        case 'dewgong': return 87;
+        case 'grimer': return 88;
+        case 'muk': return 89;
+        case 'shellder': return 90;
+        case 'cloyster': return 91;
+        case 'gastly': return 92;
+        case 'haunter': return 93;
+        case 'gengar': return 94;
+        case 'onix': return 95;
+        case 'drowzee': return 96;
+        case 'hypno': return 97;
+        case 'krabby': return 98;
+        case 'kingler': return 99;
+        case 'voltorb': return 100;
+        case 'electrode': return 101;
+        case 'exeggcute': return 102;
+        case 'exeggutor': return 103;
+        case 'cubone': return 104;
+        case 'marowak': return 105;
+        case 'hitmonlee': return 106;
+        case 'hitmonchan': return 107;
+        case 'lickitung': return 108;
+        case 'koffing': return 109;
+        case 'weezing': return 110;
+        case 'rhyhorn': return 111;
+        case 'rhydon': return 112;
+        case 'chansey': return 113;
+        case 'tangela': return 114;
+        case 'kangaskhan': return 115;
+        case 'horsea': return 116;
+        case 'seadra': return 117;
+        case 'goldeen': return 118;
+        case 'seaking': return 119;
+        case 'staryu': return 120;
+        case 'starmie': return 121;
+        case 'mr-mime': return 122;
+        case 'scyther': return 123;
+        case 'jynx': return 124;
+        case 'electabuzz': return 125;
+        case 'magmar': return 126;
+        case 'pinsir': return 127;
+        case 'tauros': return 128;
+        case 'magikarp': return 129;
+        case 'gyarados': return 130;
+        case 'lapras': return 131;
+        case 'ditto': return 132;
+        case 'eevee': return 133;
+        case 'vaporeon': return 134;
+        case 'jolteon': return 135;
+        case 'flareon': return 136;
+        case 'porygon': return 137;
+        case 'omanyte': return 138;
+        case 'omastar': return 139;
+        case 'kabuto': return 140;
+        case 'kabutops': return 141;
+        case 'aerodactyl': return 142;
+        case 'snorlax': return 143;
+        case 'articuno': return 144;
+        case 'zapdos': return 145;
+        case 'moltres': return 146;
+        case 'dratini': return 147;
+        case 'dragonair': return 148;
+        case 'dragonite': return 149;
+        case 'mewtwo': return 150;
+        case 'mew': return 151;
+        // Gen 2 (Johto) - Add here following the same pattern
+        case 'chikorita': return 152;
+        case 'bayleef': return 153;
+        case 'meganium': return 154;
+        case 'cyndaquil': return 155;
+        case 'quilava': return 156;
+        case 'typhlosion': return 157;
+        case 'totodile': return 158;
+        case 'croconaw': return 159;
+        case 'feraligatr': return 160;
+        case 'sentret': return 161;
+        case 'furret': return 162;
+        case 'hoothoot': return 163;
+        case 'noctowl': return 164;
+        case 'ledyba': return 165;
+        case 'ledian': return 166;
+        case 'spinarak': return 167;
+        case 'ariados': return 168;
+        case 'crobat': return 169;
+        case 'chinchou': return 170;
+        case 'lanturn': return 171;
+        case 'pichu': return 172;
+        case 'cleffa': return 173;
+        case 'igglybuff': return 174;
+        case 'togepi': return 175;
+        case 'togetic': return 176;
+        case 'natu': return 177;
+        case 'xatu': return 178;
+        case 'mareep': return 179;
+        case 'flaaffy': return 180;
+        case 'ampharos': return 181;
+        case 'bellossom': return 182;
+        case 'marill': return 183;
+        case 'azumarill': return 184;
+        case 'sudowoodo': return 185;
+        case 'politoed': return 186;
+        case 'hoppip': return 187;
+        case 'skiploom': return 188;
+        case 'jumpluff': return 189;
+        case 'aipom': return 190;
+        case 'sunkern': return 191;
+        case 'sunflora': return 192;
+        case 'yanma': return 193;
+        case 'wooper': return 194;
+        case 'quagsire': return 195;
+        case 'espeon': return 196;
+        case 'umbreon': return 197;
+        case 'murkrow': return 198;
+        case 'slowking': return 199;
+        case 'misdreavus': return 200;
+        case 'unown': return 201;
+        case 'wobbuffet': return 202;
+        case 'girafarig': return 203;
+        case 'pineco': return 204;
+        case 'forretress': return 205;
+        case 'dunsparce': return 206;
+        case 'gligar': return 207;
+        case 'steelix': return 208;
+        case 'snubbull': return 209;
+        case 'granbull': return 210;
+        case 'qwilfish': return 211;
+        case 'scizor': return 212;
+        case 'shuckle': return 213;
+        case 'heracross': return 214;
+        case 'sneasel': return 215;
+        case 'teddiursa': return 216;
+        case 'ursaring': return 217;
+        case 'slugma': return 218;
+        case 'magcargo': return 219;
+        case 'swinub': return 220;
+        case 'piloswine': return 221;
+        case 'corsola': return 222;
+        case 'remoraid': return 223;
+        case 'octillery': return 224;
+        case 'delibird': return 225;
+        case 'mantine': return 226;
+        case 'skarmory': return 227;
+        case 'houndour': return 228;
+        case 'houndoom': return 229;
+        case 'kingdra': return 230;
+        case 'phanpy': return 231;
+        case 'donphan': return 232;
+        case 'porygon2': return 233;
+        case 'stantler': return 234;
+        case 'smeargle': return 235;
+        case 'tyrogue': return 236;
+        case 'hitmontop': return 237;
+        case 'smoochum': return 238;
+        case 'elekid': return 239;
+        case 'magby': return 240;
+        case 'miltank': return 241;
+        case 'blissey': return 242;
+        case 'raikou': return 243;
+        case 'entei': return 244;
+        case 'suicune': return 245;
+        case 'larvitar': return 246;
+        case 'pupitar': return 247;
+        case 'tyranitar': return 248;
+        case 'lugia': return 249;
+        case 'ho-oh': return 250;
+        case 'celebi': return 251;
+        // Gen 3 (Hoenn) - Add here
+        case 'treecko': return 252;
+        case 'grovyle': return 253;
+        case 'sceptile': return 254;
+        case 'torchic': return 255;
+        case 'combusken': return 256;
+        case 'blaziken': return 257;
+        case 'mudkip': return 258;
+        case 'marshtomp': return 259;
+        case 'swampert': return 260;
+        case 'poochyena': return 261;
+        case 'mightyena': return 262;
+        case 'zigzagoon': return 263;
+        case 'linoone': return 264;
+        case 'wurmple': return 265;
+        case 'silcoon': return 266;
+        case 'beautifly': return 267;
+        case 'cascoon': return 268;
+        case 'dustox': return 269;
+        case 'lotad': return 270;
+        case 'lombre': return 271;
+        case 'ludicolo': return 272;
+        case 'seedot': return 273;
+        case 'nuzleaf': return 274;
+        case 'shiftry': return 275;
+        case 'taillow': return 276;
+        case 'swellow': return 277;
+        case 'wingull': return 278;
+        case 'pelipper': return 279;
+        case 'ralts': return 280;
+        case 'kirlia': return 281;
+        case 'gardevoir': return 282;
+        case 'surskit': return 283;
+        case 'masquerain': return 284;
+        case 'shroomish': return 285;
+        case 'breloom': return 286;
+        case 'slakoth': return 287;
+        case 'vigoroth': return 288;
+        case 'slaking': return 289;
+        case 'nincada': return 290;
+        case 'ninjask': return 291;
+        case 'shedinja': return 292;
+        case 'whismur': return 293;
+        case 'loudred': return 294;
+        case 'exploud': return 295;
+        case 'makuhita': return 296;
+        case 'hariyama': return 297;
+        case 'azurill': return 298;
+        case 'nosepass': return 299;
+        case 'skitty': return 300;
+        case 'delcatty': return 301;
+        case 'sableye': return 302;
+        case 'mawile': return 303;
+        case 'aron': return 304;
+        case 'lairon': return 305;
+        case 'aggron': return 306;
+        case 'meditite': return 307;
+        case 'medicham': return 308;
+        case 'electrike': return 309;
+        case 'manectric': return 310;
+        case 'plusle': return 311;
+        case 'minun': return 312;
+        case 'volbeat': return 313;
+        case 'illumise': return 314;
+        case 'roselia': return 315;
+        case 'gulpin': return 316;
+        case 'swalot': return 317;
+        case 'carvanha': return 318;
+        case 'sharpedo': return 319;
+        case 'wailmer': return 320;
+        case 'wailord': return 321;
+        case 'numel': return 322;
+        case 'camerupt': return 323;
+        case 'torkoal': return 324;
+        case 'spoink': return 325;
+        case 'grumpig': return 326;
+        case 'spinda': return 327;
+        case 'trapinch': return 328;
+        case 'vibrava': return 329;
+        case 'flygon': return 330;
+        case 'cacnea': return 331;
+        case 'cacturne': return 332;
+        case 'swablu': return 333;
+        case 'altaria': return 334;
+        case 'zangoose': return 335;
+        case 'seviper': return 336;
+        case 'lunatone': return 337;
+        case 'solrock': return 338;
+        case 'barboach': return 339;
+        case 'whiscash': return 340;
+        case 'corphish': return 341;
+        case 'crawdaunt': return 342;
+        case 'baltoy': return 343;
+        case 'claydol': return 344;
+        case 'lileep': return 345;
+        case 'cradily': return 346;
+        case 'anorith': return 347;
+        case 'armaldo': return 348;
+        case 'feebas': return 349;
+        case 'milotic': return 350;
+        case 'castform': return 351;
+        case 'kecleon': return 352;
+        case 'shuppet': return 353;
+        case 'banette': return 354;
+        case 'duskull': return 355;
+        case 'dusclops': return 356;
+        case 'tropius': return 357;
+        case 'chimecho': return 358;
+        case 'absol': return 359;
+        case 'wynaut': return 360;
+        case 'snorunt': return 361;
+        case 'glalie': return 362;
+        case 'spheal': return 363;
+        case 'sealio': return 364;
+        case 'walrein': return 365;
+        case 'clamperl': return 366;
+        case 'huntail': return 367;
+        case 'gorebyss': return 368;
+        case 'relicanth': return 369;
+        case 'luvdisc': return 370;
+        case 'bagon': return 371;
+        case 'shelgon': return 372;
+        case 'salamence': return 373;
+        case 'beldum': return 374;
+        case 'metang': return 375;
+        case 'metagross': return 376;
+        case 'regirock': return 377;
+        case 'regice': return 378;
+        case 'registeel': return 379;
+        case 'latias': return 380;
+        case 'latios': return 381;
+        case 'kyogre': return 382;
+        case 'groudon': return 383;
+        case 'rayquaza': return 384;
+        case 'jirachi': return 385;
+        case 'deoxys': return 386;
+        // Gen 4 (Sinnoh) - Add here
+        case 'turtwig': return 387;
+        case 'grotle': return 388;
+        case 'torterra': return 389;
+        case 'chimchar': return 390;
+        case 'monferno': return 391;
+        case 'infernape': return 392;
+        case 'piplup': return 393;
+        case 'prinplup': return 394;
+        case 'empoleon': return 395;
+        case 'starly': return 396;
+        case 'staravia': return 397;
+        case 'staraptor': return 398;
+        case 'bidoof': return 399;
+        case 'bibarel': return 400;
+        case 'kricketot': return 401;
+        case 'kricketune': return 402;
+        case 'shinx': return 403;
+        case 'luxio': return 404;
+        case 'luxray': return 405;
+        case 'budew': return 406;
+        case 'roserade': return 407;
+        case 'cranidos': return 408;
+        case 'rampardos': return 409;
+        case 'shieldon': return 410;
+        case 'bastiodon': return 411;
+        case 'burmy': return 412;
+        case 'burmy-sandy': return '412-sandy';
+        case 'burmy-trash': return '412-trash';
+        case 'wormadam-plant': return 413;
+        case 'mothim': return 414;
+        case 'combee': return 415;
+        case 'vespiquen': return 416;
+        case 'pachirisu': return 417;
+        case 'buizel': return 418;
+        case 'floatzel': return 419;
+        case 'cherubi': return 420;
+        case 'cherrim': return 421;
+        case 'shellos': return 422;
+        case 'shellos-east': return '422-east';
+        case 'gastrodon': return 423;
+        case 'gastrodon-east': return '423-east';
+        case 'ambipom': return 424;
+        case 'drifloon': return 425;
+        case 'drifblim': return 426;
+        case 'buneary': return 427;
+        case 'lopunny': return 428;
+        case 'mismagius': return 429;
+        case 'honchkrow': return 430;
+        case 'glameow': return 431;
+        case 'purugly': return 432;
+        case 'chingling': return 433;
+        case 'stunky': return 434;
+        case 'skuntank': return 435;
+        case 'bronzor': return 436;
+        case 'bronzong': return 437;
+        case 'bonsly': return 438;
+        case 'mime-jr': return 439;
+        case 'happiny': return 440;
+        case 'chatot': return 441;
+        case 'spiritomb': return 442;
+        case 'gible': return 443;
+        case 'gabite': return 444;
+        case 'garchomp': return 445;
+        case 'munchlax': return 446;
+        case 'riolu': return 447;
+        case 'lucario': return 448;
+        case 'hippopotas': return 449;
+        case 'hippowdon': return 450;
+        case 'skorupi': return 451;
+        case 'drapion': return 452;
+        case 'croagunk': return 453;
+        case 'toxicroak': return 454;
+        case 'carnivine': return 455;
+        case 'finneon': return 456;
+        case 'lumineon': return 457;
+        case 'mantyke': return 458;
+        case 'snover': return 459;
+        case 'abomasnow': return 460;
+        case 'weavile': return 461;
+        case 'magnezone': return 462;
+        case 'lickilicky': return 463;
+        case 'rhyperior': return 464;
+        case 'tangrowth': return 465;
+        case 'electivire': return 466;
+        case 'magmortar': return 467;
+        case 'togekiss': return 468;
+        case 'yanmega': return 469;
+        case 'leafeon': return 470;
+        case 'glaceon': return 471;
+        case 'gliscor': return 472;
+        case 'mamoswine': return 473;
+        case 'porygon-z': return 474;
+        case 'gallade': return 475;
+        case 'probopass': return 476;
+        case 'dusknoir': return 477;
+        case 'froslass': return 478;
+        case 'rotom': return 479;
+        case 'uxie': return 480;
+        case 'mesprit': return 481;
+        case 'azelf': return 482;
+        case 'dialga': return 483;
+        case 'palkia': return 484;
+        case 'heatran': return 485;
+        case 'regigigas': return 486;
+        case 'giratina-altered': return 487;
+        case 'cresselia': return 488;
+        case 'phione': return 489;
+        case 'manaphy': return 490;
+        case 'darkrai': return 491;
+        case 'shaymin-land': return 492;
+        case 'arceus': return 493;
+        // Gen 5 (Unova) - Add here
+        case 'victini': return 494;
+        case 'snivy': return 495;
+        case 'servine': return 496;
+        case 'serperior': return 497;
+        case 'tepig': return 498;
+        case 'pignite': return 499;
+        case 'emboar': return 500;
+        case 'oshawott': return 501;
+        case 'dewott': return 502;
+        case 'samurott': return 503;
+        case 'patrat': return 504;
+        case 'watchog': return 505;
+        case 'lillipup': return 506;
+        case 'herdier': return 507;
+        case 'stoutland': return 508;
+        case 'purrloin': return 509;
+        case 'liepard': return 510;
+        case 'pansage': return 511;
+        case 'simisage': return 512;
+        case 'pansear': return 513;
+        case 'simisear': return 514;
+        case 'panpour': return 515;
+        case 'simipour': return 516;
+        case 'munna': return 517;
+        case 'musharna': return 518;
+        case 'pidove': return 519;
+        case 'tranquill': return 520;
+        case 'unfezant': return 521;
+        case 'blitzle': return 522;
+        case 'zebstrika': return 523;
+        case 'roggenrola': return 524;
+        case 'boldore': return 525;
+        case 'gigalith': return 526;
+        case 'woobat': return 527;
+        case 'swoobat': return 528;
+        case 'sandile': return 529;
+        case 'krokorok': return 530;
+        case 'krookodile': return 531;
+        case 'darumaka': return 532;
+        case 'darmanitan': return 533;
+        case 'maractus': return 534;
+        case 'dwebble': return 535;
+        case 'crustle': return 536;
+        case 'scraggy': return 537;
+        case 'scrafty': return 538;
+        case 'sigilyph': return 539;
+        case 'yamask': return 540;
+        case 'cofagrigus': return 541;
+        case 'tirtouga': return 548;
+        case 'carracosta': return 549;
+        case 'archen': return 566;
+        case 'archeops': return 567;
+        case 'trubbish': return 568;
+        case 'garbodor': return 569;
+        case 'zorua': return 570;
+        case 'zoroark': return 571;
+        case 'minccino': return 572;
+        case 'cinccino': return 573;
+        case 'gothita': return 574;
+        case 'gothorita': return 575;
+        case 'gothitelle': return 576;
+        case 'solosis': return 577;
+        case 'duosion': return 578;
+        case 'reuniclus': return 579;
+        case 'ducklett': return 580;
+        case 'swanna': return 581;
+        case 'vanillite': return 582;
+        case 'vanillish': return 583;
+        case 'vanilluxe': return 584;
+        case 'deerling': return 585;
+        case 'deerling-summer': return '585-summer';
+        case 'deerling-autumn': return '585-autumn';
+        case 'deerling-winter': return '585-winter';
+        case 'sawsbuck': return 586;
+        case 'sawsbuck-summer': return '586-summer';
+        case 'sawsbuck-autumn': return '586-autumn';
+        case 'sawsbuck-winter': return '586-winter';
+        case 'emolga': return 587;
+        case 'karrablast': return 588;
+        case 'escavalier': return 589;
+        case 'foongus': return 590;
+        case 'amoonguss': return 591;
+        case 'frillish': return 592;
+        case 'jellicent': return 593;
+        case 'alomomola': return 594;
+        case 'joltik': return 595;
+        case 'galvantula': return 596;
+        case 'ferroseed': return 597;
+        case 'ferrothorn': return 598;
+        case 'klink': return 599;
+        case 'klang': return 600;
+        case 'klinklang': return 601;
+        case 'tynamo': return 602;
+        case 'eelektrik': return 603;
+        case 'eelektross': return 604;
+        case 'elgyem': return 605;
+        case 'beheeyem': return 606;
+        case 'litwick': return 607;
+        case 'lampent': return 608;
+        case 'chandelure': return 609;
+        case 'axew': return 610;
+        case 'fraxure': return 611;
+        case 'haxorus': return 612;
+        case 'cubchoo': return 613;
+        case 'beartic': return 614;
+        case 'cryogonal': return 615;
+        case 'shelmet': return 616;
+        case 'accelgor': return 617;
+        case 'stunfisk': return 618;
+        case 'mienfoo': return 619;
+        case 'mienshao': return 620;
+        case 'druddigon': return 621;
+        case 'golett': return 622;
+        case 'golurk': return 623;
+        case 'pawniard': return 624;
+        case 'bisharp': return 625;
+        case 'bouffalant': return 626;
+        case 'rufflet': return 627;
+        case 'braviary': return 628;
+        case 'vullaby': return 629;
+        case 'mandibuzz': return 630;
+        case 'deino': return 633;
+        case 'zweilous': return 634;
+        case 'hydreigon': return 635;
+        case 'larvesta': return 636;
+        case 'volcarona': return 637;
+        case 'cobalion': return 638;
+        case 'terrakion': return 639;
+        case 'virizion': return 640;
+        case 'tornadus-incarnate': return 641;
+        case 'thundurus-incarnate': return 642;
+        case 'reshiram': return 643;
+        case 'zekrom': return 644;
+        case 'landorus-incarnate': return 645;
+        case 'kyurem': return 646;
+        case 'keldeo-ordinary': return 647;
+        case 'meloetta-aria': return 648;
+        case 'genesect': return 649;
+        // Gen 6 (Kalos) - Add here
+        case 'chespin': return 650;
+        case 'quilladin': return 651;
+        case 'chesnaught': return 652;
+        case 'fennekin': return 653;
+        case 'braixen': return 654;
+        case 'delphox': return 655;
+        case 'froakie': return 656;
+        case 'frogadier': return 657;
+        case 'greninja': return 658;
+        case 'bunnelby': return 659;
+        case 'diggersby': return 660;
+        case 'fletchling': return 661;
+        case 'fletchinder': return 662;
+        case 'talonflame': return 663;
+        case 'scatterbug': return 664;
+        case 'spewpa': return 665;
+        case 'vivillon-meadow': return '666-meadow';
+        case 'vivillon-polar': return '666-polar';
+        case 'vivillon-tundra': return '666-tundra';
+        case 'vivillon-continental': return '666-continental';
+        case 'vivillon-elegant': return '666-elegant';
+        case 'vivillon-garden': return '666-garden';
+        case 'vivillon-modern': return '666-modern';
+        case 'vivillon-marine': return '666-marine';
+        case 'vivillon-archipelago': return '666-archipelago';
+        case 'vivillon-high-plains': return '666-high-plains';
+        case 'vivillon-sandstorm': return '666-sandstorm';
+        case 'vivillon-river': return '666-river';
+        case 'vivillon-monsoon': return '666-monsoon';
+        case 'vivillon-savanna': return '666-savanna';
+        case 'vivillon-sun': return '666-sun';
+        case 'vivillon-ocean': return '666-ocean';
+        case 'vivillon-jungle': return '666-jungle';
+        case 'vivillon-fancy': return '666-fancy';
+        case 'vivillon-pokeball': return '666-pokeball';
+        case 'flabebe': return 669;
+        case 'flabebe-blue': return '669-blue';
+        case 'flabebe-yellow': return '669-yellow';
+        case 'flabebe-orange': return '669-orange';
+        case 'flabebe-white': return '669-white';
+        case 'floette': return 670;
+        case 'floette-blue': return '670-blue';
+        case 'floette-yellow': return '670-yellow';
+        case 'floette-orange': return '670-orange';
+        case 'floette-white': return '670-white';
+        case 'florges': return 671;
+        case 'florges-blue': return '671-blue';
+        case 'florges-yellow': return '671-yellow';
+        case 'florges-orange': return '671-orange';
+        case 'florges-white': return '671-white';
+        case 'skiddo': return 672;
+        case 'gogoat': return 673;
+        case 'pancham': return 674;
+        case 'pangoro': return 675;
+        case 'furfrou': return 676;
+        case 'espurr': return 677;
+        case 'meowstic-male': return 678;
+        case 'honedge': return 679;
+        case 'doublade': return 680;
+        case 'aegislash': return 681;
+        case 'spritzee': return 682;
+        case 'aromatisse': return 683;
+        case 'swirlix': return 684;
+        case 'slurpuff': return 685;
+        case 'inkay': return 686;
+        case 'malamar': return 687;
+        case 'binacle': return 688;
+        case 'barbaracle': return 689;
+        case 'skrelp': return 690;
+        case 'dragalge': return 691;
+        case 'clauncher': return 692;
+        case 'clawitzer': return 693;
+        case 'helioptile': return 694;
+        case 'heliolisk': return 695;
+        case 'tyrunt': return 696;
+        case 'tyrantrum': return 697;
+        case 'amaura': return 698;
+        case 'aurorus': return 699;
+        case 'sylveon': return 700;
+        case 'hawlucha': return 701;
+        case 'dedenne': return 702;
+        case 'carbink': return 703;
+        case 'goomy': return 704;
+        case 'sliggoo': return 705;
+        case 'goodra': return 706;
+        case 'klefki': return 707;
+        case 'phantump': return 708;
+        case 'trevenant': return 709;
+        case 'pumpkaboo-average': return 710;
+        case 'gourgeist-average': return 711;
+        case 'bergmite': return 712;
+        case 'avalugg': return 713;
+        case 'noibat': return 714;
+        case 'noivern': return 715;
+        case 'xerneas': return 716;
+        case 'yveltal': return 717;
+        case 'zygarde': return 718;
+        case 'diancie': return 719;
+        case 'hoopa-confined': return 720;
+        case 'volcanion': return 721;
+        // Gen 7 (Alola) - Add here
+        case 'rowlet': return 722;
+        case 'dartrix': return 723;
+        case 'decidueye': return 724;
+        case 'litten': return 725;
+        case 'torracat': return 726;
+        case 'incineroar': return 727;
+        case 'popplio': return 728;
+        case 'brionne': return 729;
+        case 'primarina': return 730;
+        case 'pikipek': return 731;
+        case 'trumbeak': return 732;
+        case 'toucannon': return 733;
+        case 'yungoos': return 734;
+        case 'gumshoos': return 735;
+        case 'grubbin': return 736;
+        case 'charjabug': return 737;
+        case 'vikavolt': return 738;
+        case 'crabrawler': return 739;
+        case 'crabominable': return 740;
+        case 'oricorio': return 741;
+        case 'oricorio-pom-pom': return 10123;
+        case 'oricorio-pau': return 10124;
+        case 'oricorio-sensu': return 10125;
+        case 'cutiefly': return 742;
+        case 'ribombee': return 743;
+        case 'rockruff': return 744;
+        case 'rockruff-own-tempo': return 10151;
+        case 'lycanroc': return 745;
+        case 'lycanroc-midnight': return 10126;
+        case 'lycanroc-dusk': return 10152;
+        case 'wishiwashi': return 746;
+        case 'mareanie': return 747;
+        case 'toxapex': return 748;
+        case 'mudbray': return 749;
+        case 'mudsdale': return 750;
+        case 'dewpider': return 751;
+        case 'araquanid': return 752;
+        case 'fomantis': return 753;
+        case 'lurantis': return 754;
+        case 'morelull': return 755;
+        case 'shiinotic': return 756;
+        case 'salandit': return 757;
+        case 'salazzle': return 758;
+        case 'stufful': return 759;
+        case 'bewear': return 760;
+        case 'bounsweet': return 761;
+        case 'steenee': return 762;
+        case 'tsareena': return 763;
+        case 'comfey': return 764;
+        case 'oranguru': return 765;
+        case 'passimian': return 766;
+        case 'wimpod': return 767;
+        case 'golisopod': return 768;
+        case 'sandygast': return 769;
+        case 'palossand': return 770;
+        case 'pyukumuku': return 771;
+        case 'type-null': return 772;
+        case 'silvally': return 773;
+        case 'minior': return 10136;
+        case 'minior-core-orange': return 10137;
+        case 'minior-core-yellow': return 10138;
+        case 'minior-core-green': return 10139;
+        case 'minior-core-blue': return 10140;
+        case 'minior-core-indigo': return 10141;
+        case 'minior-core-violet': return 10142;
+        case 'komala': return 775;
+        case 'turtonator': return 776;
+        case 'togedemaru': return 777;
+        case 'mimikyu': return 778;
+        case 'bruxish': return 779;
+        case 'drampa': return 780;
+        case 'dhelmise': return 781;
+        case 'jangmo-o': return 782;
+        case 'hakamo-o': return 783;
+        case 'kommo-o': return 784;
+        case 'tapu-koko': return 785;
+        case 'tapu-lele': return 786;
+        case 'tapu-bulu': return 787;
+        case 'tapu-fini': return 788;
+        case 'cosmog': return 789;
+        case 'cosmoem': return 790;
+        case 'solgaleo': return 791;
+        case 'lunala': return 792;
+        case 'nihilego': return 793;
+        case 'buzzwole': return 794;
+        case 'pheromosa': return 795;
+        case 'xurkitree': return 796;
+        case 'celesteela': return 797;
+        case 'kartana': return 798;
+        case 'guzzlord': return 799;
+        case 'necrozma': return 800;
+        case 'magearna': return 801;
+        case 'magearna-original': return 10147;
+        case 'marshadow': return 802;
+        case 'poipole': return 803;
+        case 'naganadel': return 804;
+        case 'stakataka': return 805;
+        case 'blacephalon': return 806;
+        case 'zeraora': return 807;
+        case 'meltan': return 808;
+        case 'melmetal': return 809;
+        // Gen 8 (Galar) - Add here
+        case 'grookey': return 810;
+        case 'thwackey': return 811;
+        case 'rillaboom': return 812;
+        case 'scorbunny': return 813;
+        case 'raboot': return 814;
+        case 'cinderace': return 815;
+        case 'sobble': return 816;
+        case 'drizzile': return 817;
+        case 'inteleon': return 818;
+        case 'skwovet': return 819;
+        case 'greedent': return 820;
+        case 'rookidee': return 821;
+        case 'corvisquire': return 822;
+        case 'corviknight': return 823;
+        case 'blipbug': return 824;
+        case 'dottler': return 825;
+        case 'orbeetle': return 826;
+        case 'nickit': return 827;
+        case 'thievul': return 828;
+        case 'gossifleur': return 829;
+        case 'eldegoss': return 830;
+        case 'wooloo': return 831;
+        case 'dubwool': return 832;
+        case 'chewtle': return 833;
+        case 'drednaw': return 834;
+        case 'yamper': return 835;
+        case 'boltund': return 836;
+        case 'rolycoly': return 837;
+        case 'carkol': return 838;
+        case 'coalossal': return 839;
+        case 'applin': return 840;
+        case 'flapple': return 841;
+        case 'appletun': return 842;
+        case 'silicobra': return 843;
+        case 'sandaconda': return 844;
+        case 'cramorant': return 845;
+        case 'arrokuda': return 846;
+        case 'barraskewda': return 847;
+        case 'toxel': return 848;
+        case 'toxtricity': return 849;
+        case 'toxtricity-low-key': return 10184;
+        case 'sizzlipede': return 850;
+        case 'centiskorch': return 851;
+        case 'clobbopus': return 852;
+        case 'grapploct': return 853;
+        case 'sinistea': return 854;
+        case 'polteageist': return 855;
+        case 'hatenna': return 856;
+        case 'hattrem': return 857;
+        case 'hatterene': return 858;
+        case 'impidimp': return 859;
+        case 'morgrem': return 860;
+        case 'grimmsnarl': return 861;
+        case 'obstagoon': return 862;
+        case 'perrserker': return 863;
+        case 'cursola': return 864;
+        case 'sirfetchd': return 865;
+        case 'mr-rime': return 866;
+        case 'runerigus': return 867;
+        case 'milcery': return 868;
+        case 'alcremie': return 869;
+        case 'falinks': return 870;
+        case 'pincurchin': return 871;
+        case 'snom': return 872;
+        case 'frosmoth': return 873;
+        case 'stonjourner': return 874;
+        case 'eiscue': return 875;
+        case 'indeedee': return 876;
+        case 'indeedeee-female': return 10186;
+        case 'morpeko': return 877;
+        case 'cufant': return 878;
+        case 'copperajah': return 879;
+        case 'dracozolt': return 880;
+        case 'arctozolt': return 881;
+        case 'dracovish': return 882;
+        case 'arctovish': return 883;
+        case 'duraludon': return 884;
+        case 'regieleki': return 894;
+        case 'regidrago': return 895;
+        case 'zacian': return 888;
+        case 'zamazenta': return 889;
+        case 'eternatus': return 890;
+        case 'kubfu': return 891;
+        case 'urshifu': return 892;
+        case 'urshifu-rapid-strike': return 10191;
+        case 'zarude': return 893;
+        case 'zarude-dada': return 10192;
+        case 'regieleki': return 894;
+        case 'regidrago': return 895;
+        case 'glastrier': return 896;
+        case 'spectrier': return 897;
+        case 'calyrex': return 898;
+        case 'wyrdeer': return 899;
+        case 'kleavor': return 900;
+        case 'ursaluna': return 901;
+        case 'basculegion': return 902;
+        case 'sneasler': return 903;
+        case 'overqwil': return 904;
+        case 'enamorus-incarnate': return 905;
+        // Gen 9 (Paldea) - Add here
+        case 'sprigatito': return 906;
+        case 'floragato': return 907;
+        case 'meowscarada': return 908;
+        case 'fuecoco': return 909;
+        case 'crocalor': return 910;
+        case 'skeledirge': return 911;
+        case 'quaxly': return 912;
+        case 'quaxwell': return 913;
+        case 'quaquaval': return 914;
+        case 'lechonk': return 915;
+        case 'oinkologne': return 916;
+        case 'tarountula': return 917;
+        case 'spidops': return 918;
+        case 'nymble': return 919;
+        case 'lokix': return 920;
+        case 'pawmi': return 921;
+        case 'pawmo': return 922;
+        case 'pawmot': return 923;
+        case 'tandemaus': return 924;
+        case 'maushold-family-of-four': return 925;
+        case 'fidough': return 926;
+        case 'dachsbun': return 927;
+        case 'smoliv': return 928;
+        case 'dolliv': return 929;
+        case 'arboliva': return 930;
+        case 'squawkabilly': return 931;
+        case 'nacli': return 932;
+        case 'naclstack': return 933;
+        case 'garganacl': return 934;
+        case 'charcadet': return 935;
+        case 'armarouge': return 936;
+        case 'ceruledge': return 937;
+        case 'tadbulb': return 938;
+        case 'bellibolt': return 939;
+        case 'wattrel': return 940;
+        case 'kilowattrel': return 941;
+        case 'maschiff': return 942;
+        case 'mabosstiff': return 943;
+        case 'shroodle': return 944;
+        case 'grafaiai': return 945;
+        case 'bramblin': return 946;
+        case 'brambleghast': return 947;
+        case 'toedscool': return 948;
+        case 'toedscruel': return 949;
+        case 'klawf': return 950;
+        case 'capsakid': return 951;
+        case 'scovillain': return 952;
+        case 'rellor': return 953;
+        case 'rabsca': return 954;
+        case 'flittle': return 955;
+        case 'espathra': return 956;
+        case 'tinkatink': return 957;
+        case 'tinkatuff': return 958;
+        case 'tinkaton': return 959;
+        case 'wiglett': return 960;
+        case 'wugtrio': return 961;
+        case 'bombirdier': return 962;
+        case 'finizen': return 963;
+        case 'palafin': return 964;
+        case 'varoom': return 965;
+        case 'revavroom': return 966;
+        case 'cyclizar': return 967;
+        case 'orthworm': return 968;
+        case 'glimmet': return 969;
+        case 'glimmora': return 970;
+        case 'greavard': return 971;
+        case 'houndstone': return 972;
+        case 'flamigo': return 973;
+        case 'cetoddle': return 974;
+        case 'cetitan': return 975;
+        case 'veluza': return 976;
+        case 'dondozo': return 977;
+        case 'tatsugiri': return 978;
+        case 'annihilape': return 979;
+        case 'clodsire': return 980;
+        case 'farigiraf': return 981;
+        case 'dudunsparce': return 982;
+        case 'kingambit': return 983;
+        case 'great-tusk': return 984;
+        case 'scream-tail': return 985;
+        case 'brute-bonnet': return 986;
+        case 'flutter-mane': return 987;
+        case 'slither-wing': return 988;
+        case 'sandy-shocks': return 989;
+        case 'iron-treads': return 990;
+        case 'iron-bundle': return 991;
+        case 'iron-hands': return 992;
+        case 'iron-jugulis': return 993;
+        case 'iron-moth': return 994;
+        case 'iron-thorns': return 995;
+        case 'frigibax': return 996;
+        case 'arctibax': return 997;
+        case 'baxcalibur': return 998;
+        case 'gimmighoul-chest': return 999;
+        case 'gholdengo': return 1000;
+        case 'wo-chien': return 1001;
+        case 'chien-pao': return 1002;
+        case 'ting-lu': return 1003;
+        case 'chi-yu': return 1004;
+        case 'roaring-moon': return 1005;
+        case 'iron-valiant': return 1006;
+        case 'koraidon': return 1007;
+        case 'miraidon': return 1008;
+        case 'walking-wake': return 1009;
+        case 'iron-leaves': return 1010;
+        case 'dipplin': return 1011;
+        case 'poltchageist': return 1012;
+        case 'sinistcha': return 1013;
+        case 'okidogi': return 1014;
+        case 'munkidori': return 1015;
+        case 'fezandipiti': return 1016;
+        case 'ogerpon': return 1017;
+        case 'archaludon': return 1018;
+        case 'hydrapple': return 1019;
+        case 'gouging-fire': return 1020;
+        case 'raging-bolt': return 1021;
+        case 'iron-boulder': return 1022;
+        case 'iron-crown': return 1023;
+        case 'terapagos': return 1024;
+        case 'pecharunt': return 1025;
+        // Regional Forms and others
+        case 'rattata-alola': return 10091;
+        case 'raticate-alola': return 10092;
+        case 'raichu-alola': return 10100;
+        case 'sandshrew-alola': return 10101;
+        case 'sandslash-alola': return 10102;
+        case 'vulpix-alola': return 10103;
+        case 'ninetales-alola': return 10104;
+        case 'diglett-alola': return 10105;
+        case 'dugtrio-alola': return 10106;
+        case 'meowth-alola': return 10107;
+        case 'persian-alola': return 10108;
+        case 'geodude-alola': return 10109;
+        case 'graveler-alola': return 10110;
+        case 'golem-alola': return 10111;
+        case 'grimer-alola': return 10112;
+        case 'muk-alola': return 10113;
+        case 'exeggutor-alola': return 10114;
+        case 'marowak-alola': return 10115;
+        case 'meowth-galar': return 10161;
+        case 'ponyta-galar': return 10162;
+        case 'rapidash-galar': return 10163;
+        case 'slowpoke-galar': return 10164;
+        case 'slowbro-galar': return 10165;
+        case 'farfetchd-galar': return 10166;
+        case 'weezing-galar': return 10167;
+        case 'mr-mime-galar': return 10168;
+        case 'articuno-galar': return 10169;
+        case 'zapdos-galar': return 10170;
+        case 'moltres-galar': return 10171;
+        case 'slowking-galar': return 10172;
+        case 'corsola-galar': return 10173;
+        case 'zigzagoon-galar': return 10174;
+        case 'linoone-galar': return 10175;
+        case 'darumaka-galar': return 10176;
+        case 'darmanitan-galar': return 10177;
+        case 'yamask-galar': return 10179;
+        case 'stunfisk-galar': return 10180;
+        case 'growlithe-hisui': return 10229;
+        case 'arcanine-hisui': return 10230;
+        case 'voltorb-hisui': return 10231;
+        case 'electrode-hisui': return 10232;
+        case 'typhlosion-hisui': return 10233;
+        case 'qwilfish-hisui': return 10234;
+        case 'sneasel-hisui': return 10235;
+        case 'samurott-hisui': return 10236;
+        case 'lilligant-hisui': return 10237;
+        case 'zorua-hisui': return 10238;
+        case 'zoroark-hisui': return 10239;
+        case 'braviary-hisui': return 10240;
+        case 'sliggoo-hisui': return 10241;
+        case 'goodra-hisui': return 10242;
+        case 'avalugg-hisui': return 10243;
+        case 'decidueye-hisui': return 10244;
+        case 'tauros-combat': return 10250;
+        case 'tauros-blaze': return 10251;
+        case 'tauros-aqua': return 10252;
+        case 'wooper-paldea': return 10253;
+        case 'wormadam-sandy': return 10004;
+        case 'wormadam-trash': return 10005;
+        case 'shaymin-sky': return 10006;
+        case 'giratina-origin': return 10007;
+        case 'rotom-heat': return 10008;
+        case 'rotom-wash': return 10009;
+        case 'rotom-frost': return 10010;
+        case 'rotom-fan': return 10011;
+        case 'rotom-mow': return 10012;
+        case 'basculin-blue-striped': return 10016;
+        case 'tornadus-therian': return 10019;
+        case 'thundurus-therian': return 10020;
+        case 'landorus-therian': return 10021;
+        case 'keldeo-resolute': return 10024;
+        case 'meowstic-female': return 10025;
+        case 'pumpkaboo-large': return 10027;
+        case 'pumpkaboo-small': return 10028;
+        case 'pumpkaboo-super': return 10029;
+        case 'gourgeist-large': return 10030;
+        case 'gourgeist-small': return 10031;
+        case 'gourgeist-super': return 10032;
+        case 'oinkoologne-female': return 10254;
+        case 'dudunsparce-three-segment': return 10255;
+        case 'maushold-family-2': return 10257;
+        case 'tatsugiri-droopy': return 10258;
+        case 'tatsugiri-stretchy': return 10259;
+        case 'squawkabilly-blue': return 10260;
+        case 'squawkabilly-yellow': return 10261;
+        case 'squawkabilly-white': return 10262;
+        case 'gimmighoul-roaming': return 10263;
+        case 'ursaluna-bloodmoon': return 10272;
+        case 'dialga-origin': return 10245;
+        case 'palkia-origin': return 10246;
+        case 'basculin-white-striped': return 10247;
+        case 'basculegion-female': return 10248;
+        case 'enamorus-therian': return 10249
+        default: return 0; // Or handle unknown Pokemon differently
                         }
                 }
 
